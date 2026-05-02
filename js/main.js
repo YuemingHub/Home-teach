@@ -95,26 +95,38 @@
     {
       label: '第一圈 · 自我圈',
       title: '我能管住自己',
-      def: '最核心的一圈，也是所有价值的起点',
-      speech: '"你自己设了闹钟，这说明你是能管理自己的人。"'
+      def: '孩子看到——我的行为对我自己有积极影响。',
+      speech1: '"你自己设了闹钟，这说明你是能管理自己的人。"',
+      speech2: '"你今天没有发脾气就把事情说清楚了。这叫自我控制。"',
+      question: '你觉得，这件事里你做得最好的是什么？',
+      note: '最核心的一圈，也是所有价值的起点'
     },
     {
       label: '第二圈 · 父母圈',
-      title: '家里好了一点',
-      def: '延伸到父母，让孩子看到自己的行为对家人的影响',
-      speech: '"你这样做让我很安心——你真的在长大。"'
+      title: '我让家里好了一点',
+      def: '孩子看到——我的行为对父母和重要关系有积极影响。',
+      speech1: '"你这样做，让我觉得你真的在长大。"',
+      speech2: '"你自己做了这个决定——这是你对自己有力量。"',
+      question: '你有没有发现，其实你能做到？',
+      note: '不是让孩子为父母的情绪负责，是让他看到他对关系的影响力'
     },
     {
       label: '第三圈 · 家庭圈',
       title: '我是家里重要的人',
-      def: '让孩子感受到自己在家庭中的位置和归属',
-      speech: '"你帮忙收拾了客厅，家里因为你好了一点。"'
+      def: '孩子看到——我是家庭系统中有价值的一员。',
+      speech1: '"你帮忙收拾了客厅，家里因为你好了一点。"',
+      speech2: '"你帮忙做了饭，家里今天因为你好了一点。"',
+      question: '你觉得家里因为你好在哪里？',
+      note: '归属感从这里开始'
     },
     {
       label: '第四圈 · 社会圈',
       title: '我能帮助别人',
-      def: '最外一圈，价值感最强，孩子开始感受到自己与更广阔世界的连接',
-      speech: '"你帮了同学，你的存在让别人的生活好了一点。"'
+      def: '孩子看到——我能对更大的世界产生积极影响。',
+      speech1: '"你帮了同学，你的存在让别人的生活好了一点。"',
+      speech2: '"你帮同学讲了一道题——你觉得这对别人来说意味着什么？"',
+      question: '你觉得你做的事对别人有什么影响？',
+      note: '这是最高层，前面三圈稳了才能真正触达'
     }
   ];
 
@@ -145,7 +157,16 @@
       document.getElementById('vc-bubble-label').textContent = data.label;
       document.getElementById('vc-bubble-title').textContent = data.title;
       document.getElementById('vc-bubble-def').textContent = data.def;
-      document.getElementById('vc-bubble-speech').textContent = data.speech;
+      document.getElementById('vc-bubble-speech1').textContent = data.speech1;
+      document.getElementById('vc-bubble-speech2').textContent = data.speech2;
+      document.getElementById('vc-bubble-question').textContent = data.question;
+      document.getElementById('vc-bubble-note').textContent = data.note;
+
+      // Show speech2 if exists
+      const speech2El = document.getElementById('vc-bubble-speech2');
+      if (speech2El) {
+        speech2El.style.display = data.speech2 ? '' : 'none';
+      }
 
       // Toggle: click same ring closes bubble
       if (ring.classList.contains('active')) {

@@ -1147,6 +1147,7 @@ small, .small { font-size: 0.875rem; }
   border: 1.5px solid var(--accent);
   transform: rotateY(180deg);
   box-shadow: var(--shadow-card);
+  padding: 16px 18px;
 }
 
 .flip-card__back-ex {
@@ -1154,11 +1155,25 @@ small, .small { font-size: 0.875rem; }
   color: #C0794A;
   font-style: italic;
   margin-bottom: 8px;
+  background: #FEF0EF;
+  padding: 6px 10px;
+  border-radius: 6px;
 }
 
 .flip-card__back-note {
   font-size: 0.8rem;
   color: var(--body);
+  margin-bottom: 8px;
+}
+
+.flip-card__back-right {
+  font-size: 0.85rem;
+  color: #3D7A50;
+  font-weight: 500;
+  background: #F9F6EE;
+  padding: 8px 10px;
+  border-radius: 6px;
+  border-left: 3px solid #C9A96E;
 }
 
 /* ============================================

@@ -259,6 +259,28 @@
       font-size: 0.75rem;
       color: var(--body);
       opacity: 0.7;
+      margin-bottom: 8px;
+      padding-left: 10px;
+      border-left: 2px solid var(--accent);
+    }
+
+    .vc-bubble__question {
+      font-size: 0.85rem;
+      color: var(--accent-dark);
+      font-weight: 500;
+      margin-bottom: 8px;
+      padding: 6px 10px;
+      background: rgba(201,169,110,0.08);
+      border-radius: 6px;
+    }
+
+    .vc-bubble__note {
+      font-size: 0.75rem;
+      color: var(--body);
+      opacity: 0.7;
+      border-top: 1px solid var(--divider);
+      padding-top: 8px;
+      margin-top: 4px;
     }
 
     .vc-bubble__close {
@@ -617,8 +639,11 @@
             <button class="vc-bubble__close" onclick="closeBubble()">&times;</button>
             <div class="vc-bubble__label" id="vc-bubble-label">第一圈 · 自我圈</div>
             <div class="vc-bubble__title" id="vc-bubble-title">我能管住自己</div>
-            <div class="vc-bubble__speech" id="vc-bubble-speech">"你自己设了闹钟，这说明你是能管理自己的人。"</div>
-            <div class="vc-bubble__def" id="vc-bubble-def">最核心的一圈，也是所有价值的起点</div>
+            <div class="vc-bubble__def" id="vc-bubble-def">孩子看到——我的行为对我自己有积极影响。</div>
+            <div class="vc-bubble__speech" id="vc-bubble-speech1">"你自己设了闹钟，这说明你是能管理自己的人。"</div>
+            <div class="vc-bubble__speech" id="vc-bubble-speech2">"你今天没有发脾气就把事情说清楚了。这叫自我控制。"</div>
+            <div class="vc-bubble__question" id="vc-bubble-question">你觉得，这件事里你做得最好的是什么？</div>
+            <div class="vc-bubble__note" id="vc-bubble-note">最核心的一圈，也是所有价值的起点</div>
           </div>
 
         </div>
@@ -675,7 +700,8 @@
             </div>
             <div class="flip-card__back">
               <div class="flip-card__back-ex">"你真棒！""你真聪明！""你好厉害！"</div>
-              <div class="flip-card__back-note">没有事实支撑的夸奖听起来假，孩子会免疫。改为：描述具体行为 + 价值命名。</div>
+              <div class="flip-card__back-note">为什么不对：没有事实支撑的夸奖听起来假，孩子会免疫。</div>
+              <div class="flip-card__back-right">正确做法："我注意到你自己把手机放下了。这说明你能管住自己。"</div>
             </div>
           </div>
         </div>
@@ -688,7 +714,8 @@
             </div>
             <div class="flip-card__back">
               <div class="flip-card__back-ex">"你考好了，真棒！""你听话，才是个好孩子。"</div>
-              <div class="flip-card__back-note">价值感和表现绑定，一旦表现不好，价值感就崩塌。改为：就事论事，不贴标签。</div>
+              <div class="flip-card__back-note">为什么不对：价值感和表现绑定，一旦表现不好，价值感就崩塌。</div>
+              <div class="flip-card__back-right">正确做法："你按时完成了作业，这叫自律。"（不绑成绩，只绑行为）</div>
             </div>
           </div>
         </div>
@@ -701,7 +728,8 @@
             </div>
             <div class="flip-card__back">
               <div class="flip-card__back-ex">"你是个好孩子。"（没有事实支撑）</div>
-              <div class="flip-card__back-note">价值判断必须从具体事实出发，否则是空中楼阁。改为：先描述事实，再命名价值。</div>
+              <div class="flip-card__back-note">为什么不对：价值判断必须从具体事实出发，否则是空中楼阁。</div>
+              <div class="flip-card__back-right">正确做法："你把书放回了书架，笔收到了笔筒里——这是你自己管住了自己。"</div>
             </div>
           </div>
         </div>
@@ -714,7 +742,8 @@
             </div>
             <div class="flip-card__back">
               <div class="flip-card__back-ex">"以后都要这样！""你得保持住啊！"</div>
-              <div class="flip-card__back-note">夸奖变成压力，孩子下次反而不敢做了。改为：描述当下，然后留空间。</div>
+              <div class="flip-card__back-note">为什么不对：夸奖变成压力，孩子下次反而不敢做了。</div>
+              <div class="flip-card__back-right">正确做法："你今天自己收了书桌——这说明你可以管好自己的地方。你觉得明天会怎样？"</div>
             </div>
           </div>
         </div>
@@ -727,7 +756,8 @@
             </div>
             <div class="flip-card__back">
               <div class="flip-card__back-ex">"才做这么一点。""这有什么好说的。"</div>
-              <div class="flip-card__back-note">微小的变化才是真正的进步。改为：看见每一点，然后说出来。</div>
+              <div class="flip-card__back-note">为什么不对：微小的变化才是真正的进步。</div>
+              <div class="flip-card__back-right">正确做法："今天你放好了5分钟——比昨天多放了3分钟。你自己发现了吗？"</div>
             </div>
           </div>
         </div>
@@ -740,7 +770,8 @@
             </div>
             <div class="flip-card__back">
               <div class="flip-card__back-ex">"你看人家XXX。""你怎么不如人家。"</div>
-              <div class="flip-card__back-note">比较是价值感的天敌。改为：只和昨天的自己比，每一次都是赢。</div>
+              <div class="flip-card__back-note">为什么不对：比较是价值感的天敌。</div>
+              <div class="flip-card__back-right">正确做法："你自己把衣服叠好了——这跟别人没关系，这是你自己做到的。"</div>
             </div>
           </div>
         </div>
@@ -753,7 +784,8 @@
             </div>
             <div class="flip-card__back">
               <div class="flip-card__back-ex">"做得不错，但是……""好是好，不过……"</div>
-              <div class="flip-card__back-note">一句"但是"毁掉所有努力。改为：去掉"但是"，或换成"同时"。"不错，同时……"</div>
+              <div class="flip-card__back-note">为什么不对：一句"但是"毁掉所有努力。</div>
+              <div class="flip-card__back-right">正确做法："不错。你这次是怎么做到的？"（删掉"但是"，换成追问过程）</div>
             </div>
           </div>
         </div>
@@ -853,7 +885,7 @@
       <div class="footer__col">
         <h4>联系方式</h4>
         <div class="footer__social">
-          <a href="https://mp.weixin.qq.com/" target="_blank" rel="noopener">📰 公众号：青春期家庭指南</a>
+          <a href="https://mp.weixin.qq.com/" target="_blank" rel="noopener"><!-- TODO: 替换为公众号真实主页链接 -->📰 公众号：青春期家庭指南</a>
         </div>
         <div class="footer__social">
           <a href="https://www.douyin.com/user/YMHomelink" target="_blank" rel="noopener">📱 抖音：YMHomelink</a>
