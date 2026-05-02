@@ -89,65 +89,111 @@
   });
 
   /* ==========================================
-     交互式价值四圈
+     价值四圈 · 同心圆交互（重新设计版）
      ========================================== */
-  const circleData = [
+  const ringData = [
     {
       label: '第一圈 · 自我圈',
       title: '我能管住自己',
-      sub: '最核心的一圈，也是所有价值的起点',
-      example: '"你今天自己关了手机，这叫自律，你自己管住了自己。"',
-      hint: '先从这一圈开始，孩子最容易在这里被看见'
+      def: '最核心的一圈，也是所有价值的起点',
+      speech: '"你自己设了闹钟，这说明你是能管理自己的人。"'
     },
     {
       label: '第二圈 · 父母圈',
-      title: '家里因为你好了一点',
-      sub: '延伸到父母，让孩子看到自己的行为对家人的影响',
-      example: '"你帮妈妈把碗收到了桌上，家里因为你好走了一步。"',
-      hint: '帮助孩子连接到"家庭圈"的价值'
+      title: '家里好了一点',
+      def: '延伸到父母，让孩子看到自己的行为对家人的影响',
+      speech: '"你这样做让我很安心——你真的在长大。"'
     },
     {
       label: '第三圈 · 家庭圈',
       title: '我是家里重要的人',
-      sub: '让孩子感受到自己在家庭中的位置和归属',
-      example: '"爷爷奶奶来家里，你主动倒茶招待——这说明你是家里很重要的人。"',
-      hint: '归属感是安全感的重要来源'
+      def: '让孩子感受到自己在家庭中的位置和归属',
+      speech: '"你帮忙收拾了客厅，家里因为你好了一点。"'
     },
     {
       label: '第四圈 · 社会圈',
       title: '我能帮助别人',
-      sub: '最外一圈，价值感最强，孩子开始感受到自己与更广阔世界的连接',
-      example: '"你帮同学讲了一道题，他弄懂了——你是一个能帮助别人的人。"',
-      hint: '从近到远，层层扩展，不要跳过前面的圈直接到这里'
+      def: '最外一圈，价值感最强，孩子开始感受到自己与更广阔世界的连接',
+      speech: '"你帮了同学，你的存在让别人的生活好了一点。"'
     }
   ];
 
-  const circleBtns = document.querySelectorAll('.value-circle-btn');
-  const detailCard = document.querySelector('.value-detail-card');
+  const rings = document.querySelectorAll('.vc-ring');
+  const bubble = document.getElementById('vc-bubble');
 
-  if (circleBtns.length && detailCard) {
-    circleBtns.forEach(btn => {
-      btn.addEventListener('click', () => {
-        const idx = parseInt(btn.dataset.circle, 10) - 1;
-        const data = circleData[idx];
-
-        // Update content
-        detailCard.querySelector('.value-detail-card__label').textContent = data.label;
-        detailCard.querySelector('.value-detail-card__title').textContent = data.title;
-        detailCard.querySelector('.value-detail-card__sub').textContent = data.sub;
-        detailCard.querySelector('.value-detail-card__example').textContent = data.example;
-        detailCard.querySelector('.value-detail-card__hint').textContent = data.hint;
-
-        // Active state
-        circleBtns.forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-
-        // Show card
-        detailCard.classList.add('visible');
-        detailCard.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-      });
-    });
+  function closeBubble() {
+    if (bubble) {
+      bubble.classList.remove('visible');
+    }
+    rings.forEach(r => r.classList.remove('active'));
   }
+
+  // Make closeBubble available globally for the inline onclick
+  window.closeBubble = closeBubble;
+
+  rings.forEach(ring => {
+    ring.addEventListener('click', (e) => {
+      // Prevent bubbling when clicking inner rings
+      if (e.target !== ring && !ring.contains(e.target)) return;
+
+      const idx = parseInt(ring.dataset.ring, 10) - 1;
+      if (idx < 0 || idx >= ringData.length) return;
+
+      const data = ringData[idx];
+
+      // Update bubble content
+      document.getElementById('vc-bubble-label').textContent = data.label;
+      document.getElementById('vc-bubble-title').textContent = data.title;
+      document.getElementById('vc-bubble-def').textContent = data.def;
+      document.getElementById('vc-bubble-speech').textContent = data.speech;
+
+      // Toggle: click same ring closes bubble
+      if (ring.classList.contains('active')) {
+        closeBubble();
+        return;
+      }
+
+      // Remove active from all, set on clicked
+      rings.forEach(r => r.classList.remove('active'));
+      ring.classList.add('active');
+
+      // Position bubble: alternate left/right per ring
+      const isLeftSide = (idx % 2 === 1); // 2nd (idx=1) and 4th (idx=3) on left
+      const containerRect = ring.closest('.vc-circles').getBoundingClientRect();
+
+      if (isLeftSide) {
+        bubble.style.left = '20px';
+        bubble.style.right = 'auto';
+        bubble.style.top = '50%';
+        bubble.style.transform = 'translateY(-50%) scale(0.9)';
+      } else {
+        bubble.style.right = '20px';
+        bubble.style.left = 'auto';
+        bubble.style.top = '50%';
+        bubble.style.transform = 'translateY(-50%) scale(0.9)';
+      }
+
+      // Show bubble with animation
+      bubble.classList.add('visible');
+      requestAnimationFrame(() => {
+        bubble.style.transform = isLeftSide
+          ? 'translateY(-50%) scale(1)'
+          : 'translateY(-50%) scale(1)';
+      });
+
+      // Scroll to keep bubble visible
+      bubble.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    });
+  });
+
+  // Close on outside click
+  document.addEventListener('click', (e) => {
+    if (bubble && bubble.classList.contains('visible')) {
+      if (!bubble.contains(e.target) && !e.target.closest('.vc-ring')) {
+        closeBubble();
+      }
+    }
+  });
 
   /* ==========================================
      Active nav link highlight
