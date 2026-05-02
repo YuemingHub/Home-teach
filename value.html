@@ -6,526 +6,6 @@
   <title>价值四圈 | 月明家庭教育</title>
   <meta name="description" content="让孩子看见自己的价值。不是夸他，是帮他看见。价值四圈：自我圈→父母圈→家庭圈→社会圈。">
   <link rel="stylesheet" href="css/style.css">
-  <style>
-    /* =========================================
-       价值四圈 · 同心圆重新设计
-       ========================================= */
-    .vc-section {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 48px 0 32px;
-      user-select: none;
-    }
-
-    .vc-hint {
-      font-size: 0.875rem;
-      color: #8A8A8A;
-      text-align: center;
-      margin-bottom: 32px;
-      font-family: 'Noto Sans SC', sans-serif;
-    }
-
-    /* 同心圆容器 */
-    .vc-circles {
-      position: relative;
-      width: 360px;
-      height: 360px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    /* 脉动光晕动画 - 最外层（社会圈）外围光环 */
-    @keyframes vc-pulse {
-      0% {
-        box-shadow: 0 0 0 0 rgba(201,169,110,0.25);
-      }
-      70% {
-        box-shadow: 0 0 0 20px rgba(201,169,110,0);
-      }
-      100% {
-        box-shadow: 0 0 0 0 rgba(201,169,110,0);
-      }
-    }
-
-    /* 每一圈都是圆角矩形，作为圆环 */
-    .vc-ring {
-      position: absolute;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      transition: transform 0.4s cubic-bezier(0.34, 1.2, 0.64, 1),
-                  box-shadow 0.3s ease,
-                  border-color 0.3s ease;
-      border: 2px solid transparent;
-    }
-
-    /* 第四圈 最外 - 呼吸灯效果 */
-    .vc-ring--4 {
-      width: 360px;
-      height: 360px;
-      background: #F5EFE4;
-      border-color: #E8DCCF;
-      z-index: 4;
-      animation: vc-pulse 2.5s ease-in-out infinite;
-    }
-
-    .vc-ring:hover {
-      box-shadow: 0 0 0 6px rgba(201,169,110,0.1);
-    }
-
-    .vc-ring.active {
-      transform: scale(1.06);
-      box-shadow: 0 0 0 6px rgba(201,169,110,0.2);
-      z-index: 10;
-    }
-
-    /* 第四圈 最外 */
-    .vc-ring--4 {
-      width: 360px;
-      height: 360px;
-      background: #F5EFE4;
-      border-color: #E8DCCF;
-      z-index: 4;
-    }
-    /* 第三圈 */
-    .vc-ring--3 {
-      width: 268px;
-      height: 268px;
-      background: #EDE3D3;
-      border-color: #DDD0BC;
-      z-index: 3;
-    }
-    /* 第二圈 */
-    .vc-ring--2 {
-      width: 176px;
-      height: 176px;
-      background: #D8C9B4;
-      border-color: #C9A96E;
-      z-index: 2;
-    }
-    /* 第一圈 中心实心 */
-    .vc-ring--1 {
-      width: 84px;
-      height: 84px;
-      background: #C9A96E;
-      border-color: #C9A96E;
-      z-index: 1;
-    }
-
-    /* 圆环内的默认文字（只有没展开时才显示） */
-    .vc-ring__label {
-      position: absolute;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      pointer-events: none;
-      transition: opacity 0.3s ease;
-    }
-
-    .vc-ring--1 .vc-ring__label {
-      color: #fff;
-    }
-    .vc-ring--2 .vc-ring__label,
-    .vc-ring--3 .vc-ring__label,
-    .vc-ring--4 .vc-ring__label {
-      color: var(--heading);
-    }
-
-    .vc-ring__name {
-      font-family: 'Noto Serif SC', serif;
-      font-weight: 700;
-      white-space: nowrap;
-    }
-
-    .vc-ring--1 .vc-ring__name { font-size: 13px; }
-    .vc-ring--2 .vc-ring__name { font-size: 12px; }
-    .vc-ring--3 .vc-ring__name { font-size: 11px; }
-    .vc-ring--4 .vc-ring__name { font-size: 11px; }
-
-    .vc-ring__desc {
-      font-family: 'Noto Sans SC', sans-serif;
-      font-size: 8px;
-      opacity: 0.8;
-      white-space: nowrap;
-      margin-top: 2px;
-    }
-
-    /* 标签在圆外，用绝对定位指向四个方向 */
-    .vc-ring__tag {
-      position: absolute;
-      pointer-events: none;
-    }
-
-    /* 第四圈标签在右侧外部 */
-    .vc-ring--4 .vc-ring__tag {
-      right: -110px;
-      top: 50%;
-      transform: translateY(-50%);
-      text-align: left;
-    }
-    /* 第三圈标签在左侧外部 */
-    .vc-ring--3 .vc-ring__tag {
-      left: -110px;
-      top: 50%;
-      transform: translateY(-50%);
-      text-align: right;
-    }
-    /* 第二圈标签在右侧外部 */
-    .vc-ring--2 .vc-ring__tag {
-      right: -110px;
-      top: 50%;
-      transform: translateY(-50%);
-      text-align: left;
-    }
-    /* 第一圈标签在左侧外部（居中） */
-    .vc-ring--1 .vc-ring__tag {
-      left: -108px;
-      top: 50%;
-      transform: translateY(-50%);
-      text-align: right;
-    }
-
-    .vc-ring__tag-name {
-      font-family: 'Noto Serif SC', serif;
-      font-size: 11px;
-      font-weight: 700;
-      color: var(--heading);
-      white-space: nowrap;
-    }
-    .vc-ring--1 .vc-ring__tag-name { color: var(--accent); }
-    .vc-ring--3 .vc-ring__tag-name { color: var(--accent); }
-
-    .vc-ring__tag-desc {
-      font-size: 8px;
-      color: var(--body);
-      white-space: nowrap;
-    }
-
-    /* 展开的话术气泡 */
-    .vc-bubble {
-      position: absolute;
-      width: 240px;
-      background: #fff;
-      border: 1.5px solid var(--accent);
-      border-radius: 12px;
-      padding: 16px 18px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-      z-index: 20;
-      opacity: 0;
-      transform: scale(0.9) translateY(8px);
-      pointer-events: none;
-      transition: opacity 0.35s ease, transform 0.35s cubic-bezier(0.34, 1.2, 0.64, 1);
-    }
-
-    .vc-bubble.visible {
-      opacity: 1;
-      transform: scale(1) translateY(0);
-      pointer-events: auto;
-    }
-
-    .vc-bubble__label {
-      font-family: 'Inter', sans-serif;
-      font-size: 0.65rem;
-      color: var(--accent);
-      font-weight: 500;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      margin-bottom: 6px;
-    }
-
-    .vc-bubble__title {
-      font-family: 'Noto Serif SC', serif;
-      font-size: 0.95rem;
-      color: var(--heading);
-      font-weight: 700;
-      margin-bottom: 8px;
-    }
-
-    .vc-bubble__speech {
-      font-size: 0.8rem;
-      color: var(--body);
-      line-height: 1.6;
-      font-style: italic;
-      padding-left: 10px;
-      border-left: 2px solid var(--accent);
-      margin-bottom: 8px;
-    }
-
-    .vc-bubble__def {
-      font-size: 0.75rem;
-      color: var(--body);
-      opacity: 0.7;
-      margin-bottom: 8px;
-      padding-left: 10px;
-      border-left: 2px solid var(--accent);
-    }
-
-    .vc-bubble__question {
-      font-size: 0.85rem;
-      color: var(--accent-dark);
-      font-weight: 500;
-      margin-bottom: 8px;
-      padding: 6px 10px;
-      background: rgba(201,169,110,0.08);
-      border-radius: 6px;
-    }
-
-    .vc-bubble__note {
-      font-size: 0.75rem;
-      color: var(--body);
-      opacity: 0.7;
-      border-top: 1px solid var(--divider);
-      padding-top: 8px;
-      margin-top: 4px;
-    }
-
-    .vc-bubble__close {
-      position: absolute;
-      top: 8px;
-      right: 10px;
-      background: none;
-      border: none;
-      font-size: 16px;
-      color: #aaa;
-      cursor: pointer;
-      line-height: 1;
-      padding: 2px 4px;
-    }
-
-    .vc-bubble__close:hover { color: var(--heading); }
-
-    /* 同心圆精细样式 */
-    @media (max-width: 768px) {
-      .formula-steps {
-        flex-direction: column;
-        align-items: center;
-      }
-      .formula-step {
-        border-radius: var(--radius) !important;
-        width: 100%;
-        max-width: 300px;
-      }
-      .formula-arrow {
-        transform: rotate(90deg);
-        padding: 8px 0;
-      }
-      .formula-step:first-child { border-radius: var(--radius) !important; }
-      .formula-step:last-child { border-radius: var(--radius) !important; }
-
-      /* 手机端同心圆缩放 */
-      .vc-circles { width: 280px; height: 280px; }
-      .vc-ring--4 { width: 280px; height: 280px; }
-      .vc-ring--3 { width: 206px; height: 206px; }
-      .vc-ring--2 { width: 134px; height: 134px; }
-      .vc-ring--1 { width: 64px; height: 64px; }
-      .vc-ring--1 .vc-ring__name { font-size: 10px; }
-      .vc-ring--2 .vc-ring__name { font-size: 9px; }
-      .vc-ring--3 .vc-ring__name { font-size: 9px; }
-      .vc-ring--4 .vc-ring__name { font-size: 9px; }
-      .vc-ring__desc { display: none; }
-
-      /* 手机端标签移到圆外上下位置 */
-      .vc-ring--4 .vc-ring__tag,
-      .vc-ring--3 .vc-ring__tag,
-      .vc-ring--2 .vc-ring__tag,
-      .vc-ring--1 .vc-ring__tag {
-        position: static;
-        transform: none;
-        text-align: center;
-        display: none;
-      }
-
-      /* 手机端气泡调整 */
-      .vc-bubble {
-        width: 200px;
-        padding: 14px;
-      }
-      .vc-bubble__title { font-size: 0.85rem; }
-      .vc-bubble__speech { font-size: 0.75rem; }
-    }
-
-    @media (max-width: 380px) {
-      .vc-circles { width: 240px; height: 240px; }
-      .vc-ring--4 { width: 240px; height: 240px; }
-      .vc-ring--3 { width: 178px; height: 178px; }
-      .vc-ring--2 { width: 116px; height: 116px; }
-      .vc-ring--1 { width: 54px; height: 54px; }
-      .vc-ring--1 .vc-ring__name { font-size: 8px; }
-      .vc-ring--2 .vc-ring__name { font-size: 8px; }
-      .vc-ring--3 .vc-ring__name { font-size: 8px; }
-      .vc-ring--4 .vc-ring__name { font-size: 8px; }
-      .vc-bubble { width: 170px; }
-    }
-
-    .formula-steps {
-      display: flex;
-      align-items: stretch;
-      justify-content: center;
-      gap: 0;
-      flex-wrap: wrap;
-      margin: 40px 0;
-    }
-
-    .formula-step {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 20px 24px;
-      background: var(--card);
-      border: 1px solid var(--divider);
-      text-align: center;
-      min-width: 160px;
-    }
-
-    .formula-step:first-child { border-radius: var(--radius) 0 0 var(--radius); }
-    .formula-step:last-child { border-radius: 0 var(--radius) var(--radius) 0; }
-
-    .formula-step__num {
-      font-family: var(--font-inter);
-      font-size: 0.7rem;
-      color: var(--accent);
-      font-weight: 500;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      margin-bottom: 8px;
-    }
-
-    .formula-step__name {
-      font-family: var(--font-serif);
-      font-size: 1rem;
-      color: var(--heading);
-      font-weight: 700;
-      margin-bottom: 6px;
-    }
-
-    .formula-step__desc {
-      font-size: 0.8rem;
-      color: var(--body);
-    }
-
-    .formula-arrow {
-      display: flex;
-      align-items: center;
-      font-size: 1.2rem;
-      color: var(--accent);
-      background: var(--bg);
-      padding: 0 8px;
-    }
-
-    .error-card-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 16px;
-      margin-top: 32px;
-    }
-
-    .speech-grid {
-      margin-top: 24px;
-    }
-
-    .speech-pair {
-      background: var(--card);
-      border-radius: var(--radius);
-      padding: 20px 24px;
-      margin-bottom: 16px;
-      box-shadow: var(--shadow-card);
-      border-left: 4px solid var(--accent);
-    }
-
-    .speech-pair__bad {
-      color: #C0794A;
-      font-size: 0.875rem;
-      margin-bottom: 10px;
-      padding-left: 12px;
-      position: relative;
-    }
-
-    .speech-pair__bad::before {
-      content: '❌';
-      position: absolute;
-      left: -20px;
-    }
-
-    .speech-pair__good {
-      color: #3D7A50;
-      font-size: 0.95rem;
-      font-weight: 500;
-      padding-left: 12px;
-      position: relative;
-    }
-
-    .speech-pair__good::before {
-      content: '✅';
-      position: absolute;
-      left: -20px;
-    }
-
-    .speech-question-item {
-      background: rgba(201,169,110,0.06);
-      border: 1px solid var(--divider);
-      border-radius: var(--radius);
-      padding: 20px 24px;
-      margin-bottom: 12px;
-    }
-
-    .speech-question-item__text {
-      font-size: 0.95rem;
-      color: var(--heading);
-      font-weight: 500;
-    }
-
-    .speech-question-item__hint {
-      font-size: 0.8rem;
-      color: var(--body);
-      margin-top: 6px;
-      font-style: italic;
-    }
-
-    /* 同心圆精细样式 */
-    @media (max-width: 768px) {
-      .formula-steps {
-        flex-direction: column;
-        align-items: center;
-      }
-      .formula-step {
-        border-radius: var(--radius) !important;
-        width: 100%;
-        max-width: 300px;
-      }
-      .formula-arrow {
-        transform: rotate(90deg);
-        padding: 8px 0;
-      }
-      .formula-step:first-child { border-radius: var(--radius) !important; }
-      .formula-step:last-child { border-radius: var(--radius) !important; }
-
-      /* 手机端同心圆缩放 */
-      .circle-outer { width: 240px; height: 240px; }
-      .circle-mid { width: 185px; height: 185px; }
-      .circle-inner { width: 130px; height: 130px; }
-      .circle-core { width: 72px; height: 72px; }
-      .circle-core__name { font-size: 10px; }
-      .circle-core__desc { font-size: 6px; }
-      .circle-label { min-width: 60px; }
-      .circle-label--left { margin-right: 8px; }
-      .circle-label--right { margin-left: 8px; }
-      .circle-label__name { font-size: 9px; }
-      .circle-label__desc { font-size: 7px; }
-    }
-
-    @media (max-width: 400px) {
-      .circle-outer { width: 200px; height: 200px; }
-      .circle-mid { width: 155px; height: 155px; }
-      .circle-inner { width: 108px; height: 108px; }
-      .circle-core { width: 60px; height: 60px; }
-      .circle-core__name { font-size: 9px; }
-      .circle-core__desc { font-size: 5px; }
-    }
-  </style>
 </head>
 <body>
 
@@ -562,6 +42,7 @@
   <!-- Hero -->
   <section class="value-hero">
     <div class="container">
+      <div class="hero__kicker">第四层</div>
       <h1 class="hero__title">让孩子看见自己的价值</h1>
       <p class="hero__subtitle">不是夸他，是帮他看见。</p>
     </div>
@@ -592,9 +73,7 @@
 
       <!-- 同心圆核心区域 -->
       <div class="vc-section reveal">
-
         <p class="vc-hint">点击每一圈，看看孩子已经做到了什么</p>
-
         <div class="vc-circles">
           <!-- 第四圈 最外层：社会圈 -->
           <div class="vc-ring vc-ring--4" data-ring="4">
@@ -605,7 +84,6 @@
               <div class="vc-ring__tag-name">社会圈</div>
               <div class="vc-ring__tag-desc">我能帮助别人</div>
             </div>
-
             <!-- 第三圈：家庭圈 -->
             <div class="vc-ring vc-ring--3" data-ring="3">
               <div class="vc-ring__label">
@@ -615,7 +93,6 @@
                 <div class="vc-ring__tag-name">家庭圈</div>
                 <div class="vc-ring__tag-desc">我是家里重要的人</div>
               </div>
-
               <!-- 第二圈：父母圈 -->
               <div class="vc-ring vc-ring--2" data-ring="2">
                 <div class="vc-ring__label">
@@ -625,7 +102,6 @@
                   <div class="vc-ring__tag-name">父母圈</div>
                   <div class="vc-ring__tag-desc">我让家里好了一点</div>
                 </div>
-
                 <!-- 第一圈 中心：自我圈 -->
                 <div class="vc-ring vc-ring--1" data-ring="1">
                   <div class="vc-ring__label">
@@ -637,18 +113,11 @@
                     <div class="vc-ring__tag-desc">我能管住自己</div>
                   </div>
                 </div>
-                <!-- /第一圈 -->
-
               </div>
-              <!-- /第二圈 -->
-
             </div>
-            <!-- /第三圈 -->
-
           </div>
-          <!-- /第四圈 -->
 
-          <!-- 话术气泡（点击后出现） -->
+          <!-- 话术气泡 -->
           <div class="vc-bubble" id="vc-bubble">
             <button class="vc-bubble__close" onclick="closeBubble()">&times;</button>
             <div class="vc-bubble__label" id="vc-bubble-label">第一圈 · 自我圈</div>
@@ -659,7 +128,6 @@
             <div class="vc-bubble__question" id="vc-bubble-question">你觉得，这件事里你做得最好的是什么？</div>
             <div class="vc-bubble__note" id="vc-bubble-note">最核心的一圈，也是所有价值的起点</div>
           </div>
-
         </div>
       </div>
 
@@ -702,104 +170,90 @@
       <!-- 翻转错误卡片 -->
       <div class="section-header reveal">
         <h2 class="section-header__title">常见错误动作</h2>
-        <p class="section-header__subtitle">点击卡片翻转查看解释和替代方案</p>
+        <p class="section-header__subtitle">点击卡片查看解释和替代方案</p>
       </div>
 
       <div class="flip-cards reveal">
-        <div class="flip-card" tabindex="0">
-          <div class="flip-card__inner">
-            <div class="flip-card__front">
-              <div class="flip-card__front-title">空洞夸奖</div>
-              <div class="flip-card__front-hint">点击查看 →</div>
-            </div>
-            <div class="flip-card__back">
-              <div class="flip-card__back-ex">"你真棒！""你真聪明！""你好厉害！"</div>
-              <div class="flip-card__back-note">为什么不对：没有事实支撑的夸奖听起来假，孩子会免疫。</div>
-              <div class="flip-card__back-right">正确做法："我注意到你自己把手机放下了。这说明你能管住自己。"</div>
-            </div>
+        <div class="flip-card" onclick="openFlipModal(0)">
+          <div class="flip-card__front">
+            <div class="flip-card__front-title">空洞夸奖</div>
+            <div class="flip-card__front-hint">点击查看 →</div>
           </div>
         </div>
 
-        <div class="flip-card" tabindex="0">
-          <div class="flip-card__inner">
-            <div class="flip-card__front">
-              <div class="flip-card__front-title">条件式价值</div>
-              <div class="flip-card__front-hint">点击查看 →</div>
-            </div>
-            <div class="flip-card__back">
-              <div class="flip-card__back-ex">"你考好了，真棒！""你听话，才是个好孩子。"</div>
-              <div class="flip-card__back-note">为什么不对：价值感和表现绑定，一旦表现不好，价值感就崩塌。</div>
-              <div class="flip-card__back-right">正确做法："你按时完成了作业，这叫自律。"（不绑成绩，只绑行为）</div>
-            </div>
+        <div class="flip-card" onclick="openFlipModal(1)">
+          <div class="flip-card__front">
+            <div class="flip-card__front-title">条件式价值</div>
+            <div class="flip-card__front-hint">点击查看 →</div>
           </div>
         </div>
 
-        <div class="flip-card" tabindex="0">
-          <div class="flip-card__inner">
-            <div class="flip-card__front">
-              <div class="flip-card__front-title">跳过事实评价</div>
-              <div class="flip-card__front-hint">点击查看 →</div>
-            </div>
-            <div class="flip-card__back">
-              <div class="flip-card__back-ex">"你是个好孩子。"（没有事实支撑）</div>
-              <div class="flip-card__back-note">为什么不对：价值判断必须从具体事实出发，否则是空中楼阁。</div>
-              <div class="flip-card__back-right">正确做法："你把书放回了书架，笔收到了笔筒里——这是你自己管住了自己。"</div>
-            </div>
+        <div class="flip-card" onclick="openFlipModal(2)">
+          <div class="flip-card__front">
+            <div class="flip-card__front-title">跳过事实评价</div>
+            <div class="flip-card__front-hint">点击查看 →</div>
           </div>
         </div>
 
-        <div class="flip-card" tabindex="0">
-          <div class="flip-card__inner">
-            <div class="flip-card__front">
-              <div class="flip-card__front-title">价值加压</div>
-              <div class="flip-card__front-hint">点击查看 →</div>
-            </div>
-            <div class="flip-card__back">
-              <div class="flip-card__back-ex">"以后都要这样！""你得保持住啊！"</div>
-              <div class="flip-card__back-note">为什么不对：夸奖变成压力，孩子下次反而不敢做了。</div>
-              <div class="flip-card__back-right">正确做法："你今天自己收了书桌——这说明你可以管好自己的地方。你觉得明天会怎样？"</div>
-            </div>
+        <div class="flip-card" onclick="openFlipModal(3)">
+          <div class="flip-card__front">
+            <div class="flip-card__front-title">价值加压</div>
+            <div class="flip-card__front-hint">点击查看 →</div>
           </div>
         </div>
 
-        <div class="flip-card" tabindex="0">
-          <div class="flip-card__inner">
-            <div class="flip-card__front">
-              <div class="flip-card__front-title">忽视微小变化</div>
-              <div class="flip-card__front-hint">点击查看 →</div>
-            </div>
-            <div class="flip-card__back">
-              <div class="flip-card__back-ex">"才做这么一点。""这有什么好说的。"</div>
-              <div class="flip-card__back-note">为什么不对：微小的变化才是真正的进步。</div>
-              <div class="flip-card__back-right">正确做法："今天你放好了5分钟——比昨天多放了3分钟。你自己发现了吗？"</div>
-            </div>
+        <div class="flip-card" onclick="openFlipModal(4)">
+          <div class="flip-card__front">
+            <div class="flip-card__front-title">忽视微小变化</div>
+            <div class="flip-card__front-hint">点击查看 →</div>
           </div>
         </div>
 
-        <div class="flip-card" tabindex="0">
-          <div class="flip-card__inner">
-            <div class="flip-card__front">
-              <div class="flip-card__front-title">比较抹杀</div>
-              <div class="flip-card__front-hint">点击查看 →</div>
-            </div>
-            <div class="flip-card__back">
-              <div class="flip-card__back-ex">"你看人家XXX。""你怎么不如人家。"</div>
-              <div class="flip-card__back-note">为什么不对：比较是价值感的天敌。</div>
-              <div class="flip-card__back-right">正确做法："你自己把衣服叠好了——这跟别人没关系，这是你自己做到的。"</div>
-            </div>
+        <div class="flip-card" onclick="openFlipModal(5)">
+          <div class="flip-card__front">
+            <div class="flip-card__front-title">比较抹杀</div>
+            <div class="flip-card__front-hint">点击查看 →</div>
           </div>
         </div>
 
-        <div class="flip-card" tabindex="0">
-          <div class="flip-card__inner">
-            <div class="flip-card__front">
-              <div class="flip-card__front-title">价值反转</div>
-              <div class="flip-card__front-hint">点击查看 →</div>
+        <div class="flip-card" onclick="openFlipModal(6)">
+          <div class="flip-card__front">
+            <div class="flip-card__front-title">价值反转</div>
+            <div class="flip-card__front-hint">点击查看 →</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 翻转卡片弹窗 -->
+      <div class="flip-modal" id="flip-modal" onclick="closeFlipModal(event)">
+        <div class="flip-modal__dialog">
+          <button class="flip-modal__close" onclick="closeFlipModal(event)">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="18" height="18">
+              <line x1="18" y1="6" x2="6" y2="18"/>
+              <line x1="6" y1="6" x2="18" y2="18"/>
+            </svg>
+          </button>
+          <div class="flip-modal__title" id="fm-title"></div>
+          <div class="flip-modal__body">
+            <div class="flip-modal__section flip-modal__section--bad">
+              <div class="flip-modal__badge flip-modal__badge--bad">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="14" height="14">
+                  <line x1="18" y1="6" x2="6" y2="18"/>
+                  <line x1="6" y1="6" x2="18" y2="18"/>
+                </svg>
+                错误做法
+              </div>
+              <div class="flip-modal__ex" id="fm-ex"></div>
+              <div class="flip-modal__note" id="fm-note"></div>
             </div>
-            <div class="flip-card__back">
-              <div class="flip-card__back-ex">"做得不错，但是……""好是好，不过……"</div>
-              <div class="flip-card__back-note">为什么不对：一句"但是"毁掉所有努力。</div>
-              <div class="flip-card__back-right">正确做法："不错。你这次是怎么做到的？"（删掉"但是"，换成追问过程）</div>
+            <div class="flip-modal__section flip-modal__section--good">
+              <div class="flip-modal__badge flip-modal__badge--good">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="14" height="14">
+                  <polyline points="20 6 9 17 4 12"/>
+                </svg>
+                正确做法
+              </div>
+              <div class="flip-modal__right" id="fm-right"></div>
             </div>
           </div>
         </div>
@@ -810,39 +264,146 @@
       <!-- 话术工具箱 -->
       <div class="section-header reveal">
         <h2 class="section-header__title">话术工具箱</h2>
-        <p class="section-header__subtitle">事实描述 + 价值命名，❌→✅ 对比</p>
+        <p class="section-header__subtitle">事实描述 + 价值命名，错误与正确对比</p>
       </div>
 
       <div class="speech-grid reveal">
-        <!-- 话术1 -->
+        <!-- 话术1：收拾房间 -->
         <div class="speech-pair">
-          <div class="speech-pair__bad">孩子自己收拾了房间，你脱口而出："真棒！你真是个好孩子！"</div>
-          <div class="speech-pair__good">"你把书放回了书架，笔收到了笔筒里——这叫自律，是你自己管住了自己。"</div>
+          <div class="speech-pair__bad">
+            <div class="speech-pair__badge speech-pair__badge--bad">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="12" height="12">
+                <line x1="18" y1="6" x2="6" y2="18"/>
+                <line x1="6" y1="6" x2="18" y2="18"/>
+              </svg>
+              错误
+            </div>
+            <div class="speech-pair__text">孩子自己收拾了房间，你脱口而出："真棒！你真是个好孩子！"</div>
+          </div>
+          <div class="speech-pair__good">
+            <div class="speech-pair__badge speech-pair__badge--good">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="12" height="12">
+                <polyline points="20 6 9 17 4 12"/>
+              </svg>
+              正确
+            </div>
+            <div class="speech-pair__text">"你把书放回了书架，笔收到了笔筒里——这叫自律，是你自己管住了自己。"</div>
+          </div>
         </div>
-        <!-- 话术2 -->
+
+        <!-- 话术2：帮父母端碗 -->
         <div class="speech-pair">
-          <div class="speech-pair__bad">"你帮妈妈拿东西了，真乖！"（条件式 + 空洞）</div>
-          <div class="speech-pair__good">"你帮妈妈把碗端到了桌上——你做这件事让家里好走了一步，这是家庭圈的贡献。"</div>
+          <div class="speech-pair__bad">
+            <div class="speech-pair__badge speech-pair__badge--bad">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="12" height="12">
+                <line x1="18" y1="6" x2="6" y2="18"/>
+                <line x1="6" y1="6" x2="18" y2="18"/>
+              </svg>
+              错误
+            </div>
+            <div class="speech-pair__text">"你帮妈妈拿东西了，真乖！"（条件式 + 空洞）</div>
+          </div>
+          <div class="speech-pair__good">
+            <div class="speech-pair__badge speech-pair__badge--good">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="12" height="12">
+                <polyline points="20 6 9 17 4 12"/>
+              </svg>
+              正确
+            </div>
+            <div class="speech-pair__text">"你帮妈妈把碗端到了桌上——你做这件事让我也轻松了一些，这就叫帮了家里。"</div>
+          </div>
         </div>
-        <!-- 话术3 -->
+
+        <!-- 话术3：考好了 -->
         <div class="speech-pair">
-          <div class="speech-pair__bad">"这次考得好，妈妈太高兴了！"（把孩子的价值绑在父母的情绪上）</div>
-          <div class="speech-pair__good">"你这道题之前不会，现在做对了——你自己搞定了一道难题，这是你自己圈的能力。"</div>
+          <div class="speech-pair__bad">
+            <div class="speech-pair__badge speech-pair__badge--bad">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="12" height="12">
+                <line x1="18" y1="6" x2="6" y2="18"/>
+                <line x1="6" y1="6" x2="18" y2="18"/>
+              </svg>
+              错误
+            </div>
+            <div class="speech-pair__text">"这次考得好，妈妈太高兴了！"（把孩子的价值绑在父母的情绪上）</div>
+          </div>
+          <div class="speech-pair__good">
+            <div class="speech-pair__badge speech-pair__badge--good">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="12" height="12">
+                <polyline points="20 6 9 17 4 12"/>
+              </svg>
+              正确
+            </div>
+            <div class="speech-pair__text">"这道题之前不会，现在做对了——你自己搞定了一道难题，这就是能力。"</div>
+          </div>
         </div>
-        <!-- 话术4 -->
+
+        <!-- 话术4：价值加压 -->
         <div class="speech-pair">
-          <div class="speech-pair__bad">"以后每天都要自己收拾！"（价值加压）</div>
-          <div class="speech-pair__good">"你今天自己收了书桌——这说明你可以管好自己的地方。你觉得明天会怎样？"</div>
+          <div class="speech-pair__bad">
+            <div class="speech-pair__badge speech-pair__badge--bad">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="12" height="12">
+                <line x1="18" y1="6" x2="6" y2="18"/>
+                <line x1="6" y1="6" x2="18" y2="18"/>
+              </svg>
+              错误
+            </div>
+            <div class="speech-pair__text">"以后每天都要自己收拾！"（价值加压）</div>
+          </div>
+          <div class="speech-pair__good">
+            <div class="speech-pair__badge speech-pair__badge--good">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="12" height="12">
+                <polyline points="20 6 9 17 4 12"/>
+              </svg>
+              正确
+            </div>
+            <div class="speech-pair__text">"你今天自己收了书桌——这说明你可以管好自己的地方。你觉得明天会怎样？"</div>
+          </div>
         </div>
-        <!-- 话术5 -->
+
+        <!-- 话术5：忽视微小变化 -->
         <div class="speech-pair">
-          <div class="speech-pair__bad">"你看你，又忘了。" "才放好又乱了。"（否定微小变化）</div>
-          <div class="speech-pair__good">"今天你放好了5分钟——比昨天多放了3分钟。你自己发现了吗？"</div>
+          <div class="speech-pair__bad">
+            <div class="speech-pair__badge speech-pair__badge--bad">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="12" height="12">
+                <line x1="18" y1="6" x2="6" y2="18"/>
+                <line x1="6" y1="6" x2="18" y2="18"/>
+              </svg>
+              错误
+            </div>
+            <div class="speech-pair__text">"你看你，又忘了。""才放好又乱了。"（否定微小变化）</div>
+          </div>
+          <div class="speech-pair__good">
+            <div class="speech-pair__badge speech-pair__badge--good">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="12" height="12">
+                <polyline points="20 6 9 17 4 12"/>
+              </svg>
+              正确
+            </div>
+            <div class="speech-pair__text">"今天你放好了5分钟——比昨天多放了3分钟。你自己发现了吗？"</div>
+          </div>
         </div>
-        <!-- 话术6 -->
+
+        <!-- 话术6：比较抹杀 -->
         <div class="speech-pair">
-          <div class="speech-pair__bad">"你看人家小明每天都自己整理。"（比较抹杀）</div>
-          <div class="speech-pair__good">"你自己把衣服叠好了——这跟别人没关系，这是你自己做到的。"</div>
+          <div class="speech-pair__bad">
+            <div class="speech-pair__badge speech-pair__badge--bad">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="12" height="12">
+                <line x1="18" y1="6" x2="6" y2="18"/>
+                <line x1="6" y1="6" x2="18" y2="18"/>
+              </svg>
+              错误
+            </div>
+            <div class="speech-pair__text">"你看人家小明每天都自己整理。"（比较抹杀）</div>
+          </div>
+          <div class="speech-pair__good">
+            <div class="speech-pair__badge speech-pair__badge--good">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="12" height="12">
+                <polyline points="20 6 9 17 4 12"/>
+              </svg>
+              正确
+            </div>
+            <div class="speech-pair__text">"你自己把衣服叠好了——这跟别人没关系，这是你自己做到的。"</div>
+          </div>
         </div>
       </div>
 
@@ -885,18 +446,18 @@
       <div style="padding-bottom:80px;"></div>
     </div>
   </section>
-
-  <!-- CTA 低门槛行动引导 -->
-  <section class="section" style="padding-top:0; padding-bottom:40px;">
-    <div class="container">
-      <div class="cta-strip reveal">
-        <div class="cta-strip__text">遇到卡点不知道怎么办？<strong>直接加我微信</strong>，简单说明情况，帮你判断卡在哪一层。</div>
-        <img src="images/qr/qrcode-wechat-mp.jpg" alt="微信二维码" class="cta-strip__qr" onerror="this.style.display='none'">
-        <div class="cta-strip__label">💬 ampersir<br>扫码添加</div>
-      </div>
-    </div>
-  </section>
 </main>
+
+<!-- CTA 低门槛行动引导 -->
+<section class="section" style="padding-top:0; padding-bottom:40px;">
+  <div class="container">
+    <div class="cta-strip reveal">
+      <div class="cta-strip__text">遇到卡点不知道怎么办？<strong>直接加我微信</strong>，简单说明情况，帮你判断卡在哪一层。</div>
+      <img src="images/qr/qrcode-wechat-mp.jpg" alt="微信二维码" class="cta-strip__qr" onerror="this.style.display='none'">
+      <div class="cta-strip__label">微信 YMHomeLink<br>扫码添加</div>
+    </div>
+  </div>
+</section>
 
 <!-- ========== FOOTER ========== -->
 <!--[FOOTER START]-->
@@ -910,13 +471,13 @@
       <div class="footer__col">
         <h4>联系方式</h4>
         <div class="footer__social">
-          <a href="https://mp.weixin.qq.com/" target="_blank" rel="noopener"><!-- TODO: 替换为公众号真实主页链接 -->📰 公众号：青春期家庭指南</a>
+          <a href="https://mp.weixin.qq.com/" target="_blank" rel="noopener">公众号：青春期家庭指南</a>
         </div>
         <div class="footer__social">
-          <a href="https://www.douyin.com/user/YMHomelink" target="_blank" rel="noopener">📱 抖音：YMHomelink</a>
+          <a href="https://www.douyin.com/user/YMHomelink" target="_blank" rel="noopener">抖音：YMHomelink</a>
         </div>
         <div class="footer__social">
-          <a href="#">📕 小红书：即将上线</a>
+          <a href="#">小红书：即将上线</a>
         </div>
       </div>
       <div class="footer__col">
@@ -929,7 +490,7 @@
       </div>
     </div>
     <div class="footer__bottom">
-      <span>© 2026 月明家庭教育</span>
+      <span>&copy; 2026 月明家庭教育</span>
       <span>目标不是听话优秀，而是自我运转的孩子</span>
       <ul class="footer__bottom-links">
         <li><a href="index.html">首页</a></li>

@@ -41,6 +41,7 @@
 <main>
   <section class="hero">
     <div class="container">
+      <div class="hero__kicker">联系</div>
       <h1 class="hero__title">一起做点什么</h1>
       <p class="hero__subtitle">家长咨询 · 同行合作 · 机构服务</p>
     </div>
@@ -48,107 +49,75 @@
 
   <section class="section" style="padding-top:0">
     <div class="container">
-      <!-- 三列方向 -->
-      <div class="three-cols reveal" style="margin-bottom:64px;">
-        <div class="three-col">
-          <div class="three-col__icon">👨‍👩‍👧</div>
-          <div class="three-col__title">家长咨询</div>
-          <div class="three-col__desc">一对一家庭教育咨询，帮你看清楚问题卡在哪一层，给出具体可操作的方案。</div>
+      <!-- 深度咨询（一句话 + 大文本框） -->
+      <div class="contact-deep reveal">
+        <div class="contact-deep__intro">
+          <h2>说说你现在的情况</h2>
+          <p>不用组织语言，想到什么说什么。把困惑写下来，我来看。</p>
         </div>
-        <div class="three-col">
-          <div class="three-col__icon">🤝</div>
-          <div class="three-col__title">同行合作</div>
-          <div class="three-col__desc">课程合作、内容共创、家庭教育体系引入——欢迎同行交流。</div>
-        </div>
-        <div class="three-col">
-          <div class="three-col__icon">🏫</div>
-          <div class="three-col__title">机构服务</div>
-          <div class="three-col__desc">教师培训、家长课堂、体系引入，专业内容定制。</div>
+        <form class="contact-deep__form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST" onsubmit="setTimeout(function(){window.location.href='thanks.html';},500);">
+          <textarea name="message" required placeholder="孩子多大了？现在是什么情况？让你最头疼的是什么？你试过什么方法？……想说多少说多少，想到什么说什么，不用组织语言。" rows="8"></textarea>
+          <div class="contact-deep__row">
+            <input type="text" name="name" placeholder="你的称呼（选填）">
+            <input type="email" name="email" placeholder="邮箱（选填，想要回复）">
+          </div>
+          <input type="hidden" name="_next" value="thanks.html">
+          <button type="submit" class="btn btn--primary">发出去 →</button>
+        </form>
+        <div class="contact-deep__alt">
+          <span>想说更快？</span>
+          <a href="javascript:;" onclick="document.querySelector('.contact-wechat').scrollIntoView({behavior:'smooth'});">扫码微信说 ↑</a>
+          <span>或</span>
+          <a href="https://mp.weixin.qq.com/" target="_blank" rel="noopener">公众号留言</a>
         </div>
       </div>
 
-      <!-- 表单 + 联系信息 -->
-      <div class="contact-grid">
-        <!-- 表单 -->
-        <div class="reveal">
-          <h2 style="font-family:var(--font-serif); font-size:1.4rem; color:var(--heading); margin-bottom:32px;">填写表单</h2>
-          <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST" onsubmit="setTimeout(function(){window.location.href='thanks.html';},500);">
-            <div class="form-group">
-              <label for="name">名字</label>
-              <input type="text" id="name" name="name" required placeholder="怎么称呼你">
-            </div>
-            <div class="form-group">
-              <label for="email">邮箱</label>
-              <input type="email" id="email" name="email" required placeholder="your@email.com">
-            </div>
-            <div class="form-group">
-              <label for="child-age">孩子年龄</label>
-              <input type="text" id="child-age" name="child-age" placeholder="如：12岁 / 青春期">
-            </div>
-            <div class="form-group">
-              <label for="message">需求简述</label>
-              <textarea id="message" name="message" required placeholder="简单说说你现在的情况，以及想聊什么……"></textarea>
-            </div>
-            <div class="form-group">
-              <label>我是</label>
-              <div class="form-radios">
-                <label><input type="radio" name="type" value="家长" checked> 家长</label>
-                <label><input type="radio" name="type" value="同行"> 同行</label>
-                <label><input type="radio" name="type" value="机构"> 机构</label>
-              </div>
-            </div>
-            <input type="hidden" name="_next" value="thanks.html">
-            <button type="submit" class="btn btn--primary" style="width:100%; margin-top:8px;">发送消息</button>
-          </form>
+        <!-- 其他联系方式 -->
+      <div class="contact-wechat">
+        <div class="qr-cards" style="margin-bottom:32px;">
+          <div class="qr-card qr-card--wechat">
+            <img src="images/qr/qrcode-wechat-mp.jpg" alt="个人微信二维码" class="qr-card__img">
+            <div class="qr-card__name">个人微信</div>
+            <div class="qr-card__sub">YMHomeLink · 扫码添加</div>
+          </div>
+          <div class="qr-card">
+            <img src="images/qr/qrcode-wechat-personal.png" alt="公众号二维码" class="qr-card__img">
+            <div class="qr-card__name">公众号</div>
+            <div class="qr-card__sub">青春期家庭指南</div>
+          </div>
+          <div class="qr-card">
+            <img src="images/qr/qrcode-douyin.png" alt="抖音二维码" class="qr-card__img">
+            <div class="qr-card__name">抖音</div>
+            <div class="qr-card__sub">YMHomelink</div>
+          </div>
         </div>
 
-        <!-- 联系信息 -->
-        <div class="reveal">
-          <h2 style="font-family:var(--font-serif); font-size:1.4rem; color:var(--heading); margin-bottom:32px;">其他联系方式</h2>
-          <div class="qr-cards" style="margin-bottom:32px;">
-            <div class="qr-card qr-card--wechat">
-              <img src="images/qr/qrcode-wechat-mp.jpg" alt="个人微信二维码" class="qr-card__img">
-              <div class="qr-card__name">💬 个人微信</div>
-              <div class="qr-card__sub">ampersir · 扫码添加</div>
-            </div>
-            <div class="qr-card">
-              <img src="images/qr/qrcode-wechat-personal.png" alt="公众号二维码" class="qr-card__img">
-              <div class="qr-card__name">📰 公众号</div>
-              <div class="qr-card__sub">青春期家庭指南</div>
-            </div>
-            <div class="qr-card">
-              <img src="images/qr/qrcode-douyin.png" alt="抖音二维码" class="qr-card__img">
-              <div class="qr-card__name">📱 抖音</div>
-              <div class="qr-card__sub">YMHomelink</div>
-            </div>
-          </div>
+        <div style="text-align:center;margin-bottom:32px;">
+          <div style="font-size:0.85rem;color:var(--body);opacity:0.7;">邮箱联系</div>
+          <div style="font-family:var(--font-serif);font-size:1rem;color:var(--heading);margin-top:8px;">ymhomelink@163.com</div>
+        </div>
 
-          <div style="text-align:center;margin-bottom:32px;">
-            <div style="font-size:0.85rem;color:var(--body);opacity:0.7;">或通过邮箱联系</div>
-            <div style="font-family:var(--font-serif);font-size:1rem;color:var(--heading);margin-top:8px;">ymhomelink@163.com</div>
-          </div>
-
-          <div class="divider" style="margin:32px 0;"></div>
-
-          <div class="cta-box cta-box--inline">
-            <p style="font-family:var(--font-serif); font-size:1rem; color:var(--heading); margin-bottom:8px;">想先了解我的内容？</p>
-            <p style="font-size:0.875rem; color:var(--body);">61篇原创内容，聚焦厌学、躺平、亲子冲突。</p>
-          </div>
+        <div class="cta-box cta-box--inline">
+          <p style="font-family:var(--font-serif); font-size:1rem; color:var(--heading); margin-bottom:8px;">想先了解我的内容？</p>
+          <p style="font-size:0.875rem; color:var(--body);">61篇原创内容，聚焦厌学、躺平、亲子冲突。</p>
         </div>
       </div>
 
       <div style="padding-bottom:80px;"></div>
     </div>
-  <section class="section" style="padding-top:0; padding-bottom:40px;">
-    <div class="container">
-      <div class="cta-strip reveal">
-        <div class="cta-strip__text">遇到卡点不知道怎么办？<strong>直接加我微信</strong>，简单说明情况，帮你判断卡在哪一层。</div>
-        <img src="images/qr/qrcode-wechat-mp.jpg" alt="微信二维码" class="cta-strip__qr" onerror="this.style.display='none'">
-        <div class="cta-strip__label">💬 ampersir<br>扫码添加</div>
-      </div>
-    </div>
   </section>
 </main>
+
+<!-- CTA 低门槛行动引导 -->
+<section class="section" style="padding-top:0; padding-bottom:40px;">
+  <div class="container">
+    <div class="cta-strip reveal">
+      <div class="cta-strip__text">遇到卡点不知道怎么办？<strong>直接加我微信</strong>，简单说明情况，帮你判断卡在哪一层。</div>
+      <img src="images/qr/qrcode-wechat-mp.jpg" alt="微信二维码" class="cta-strip__qr" onerror="this.style.display='none'">
+      <div class="cta-strip__label">微信 YMHomeLink<br>扫码添加</div>
+    </div>
+  </div>
+</section>
 
 <!-- ========== FOOTER ========== -->
 <!--[FOOTER START]-->
@@ -162,13 +131,13 @@
       <div class="footer__col">
         <h4>联系方式</h4>
         <div class="footer__social">
-          <a href="https://mp.weixin.qq.com/" target="_blank" rel="noopener"><!-- TODO: 替换为真实公众号主页链接 -->📰 公众号：青春期家庭指南</a>
+          <a href="https://mp.weixin.qq.com/" target="_blank" rel="noopener"><!-- TODO: 替换为真实公众号主页链接 -->公众号：青春期家庭指南</a>
         </div>
         <div class="footer__social">
-          <a href="https://www.douyin.com/user/YMHomelink" target="_blank" rel="noopener">📱 抖音：YMHomelink</a>
+          <a href="https://www.douyin.com/user/YMHomelink" target="_blank" rel="noopener">抖音：YMHomelink</a>
         </div>
         <div class="footer__social">
-          <a href="#">📕 小红书：即将上线</a>
+          <a href="#">小红书：即将上线</a>
         </div>
       </div>
       <div class="footer__col">

@@ -39,8 +39,9 @@
 <!--[HEADER END]-->
 
 <main>
-  <section class="hero" style="padding-bottom:0;">
+  <section class="hero">
     <div class="container">
+      <div class="hero__kicker">收到</div>
       <h1 class="hero__title" style="font-size:2rem;">收到你的消息</h1>
       <p class="hero__subtitle">我会在48小时内回复。</p>
     </div>
@@ -53,7 +54,7 @@
         <p style="font-size:0.95rem; color:var(--body); margin-bottom:24px;">可以先下载这份《家长自检句卡片》。</p>
         <p style="font-size:0.875rem; color:var(--body); margin-bottom:32px;">日常可以用的话术参考，帮你先在生活中用起来。</p>
         <div style="text-align:center;">
-          <a href="resources/parent-checklist.pdf" class="btn btn--primary" target="_blank">📋 下载家长自检句卡片</a>
+          <a href="resources/parent-checklist.pdf" class="btn btn--primary" target="_blank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="20" height="20"><path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="1"/><line x1="9" y1="12" x2="15" y2="12"/><line x1="9" y1="16" x2="13" y2="16"/></svg> 下载家长自检句卡片</a>
         </div>
       </div>
 
@@ -63,12 +64,12 @@
         <div class="qr-cards reveal" style="margin-bottom:40px;">
           <div class="qr-card">
             <img src="images/qr/qrcode-wechat-mp.jpg" alt="微信公众号二维码" class="qr-card__img" onerror="this.style.opacity='0.3'">
-            <div class="qr-card__name">📰 公众号</div>
+            <div class="qr-card__name">公众号</div>
             <div class="qr-card__sub">青春期家庭指南</div>
           </div>
           <div class="qr-card">
             <img src="images/qr/qrcode-douyin.png" alt="抖音二维码" class="qr-card__img" onerror="this.style.opacity='0.3'">
-            <div class="qr-card__name">📱 抖音</div>
+            <div class="qr-card__name">抖音</div>
             <div class="qr-card__sub">YMHomelink</div>
           </div>
         </div>
@@ -78,16 +79,19 @@
 
       <div style="padding-bottom:80px;"></div>
     </div>
-  <section class="section" style="padding-top:32px;">
-    <div class="container" style="max-width:600px; text-align:center;">
-      <div class="cta-strip reveal" style="background:rgba(201,169,110,0.08); border:1px solid var(--divider); color:var(--body);">
-        <div class="cta-strip__text" style="color:var(--heading);">遇到卡点不知道怎么办？<strong>直接加我微信</strong>，简单说明情况，帮你判断卡在哪一层。</div>
-        <img src="images/qr/qrcode-wechat-mp.jpg" alt="微信二维码" class="cta-strip__qr">
-        <div class="cta-strip__label">💬 ampersir · 扫码添加</div>
-      </div>
-    </div>
   </section>
 </main>
+
+<!-- CTA 低门槛行动引导 -->
+<section class="section" style="padding-top:32px; padding-bottom:40px;">
+  <div class="container" style="max-width:600px; text-align:center;">
+    <div class="cta-strip reveal" style="background:rgba(201,169,110,0.08); border:1px solid var(--divider); color:var(--body);">
+      <div class="cta-strip__text" style="color:var(--heading);">遇到卡点不知道怎么办？<strong>直接加我微信</strong>，简单说明情况，帮你判断卡在哪一层。</div>
+      <img src="images/qr/qrcode-wechat-mp.jpg" alt="微信二维码" class="cta-strip__qr">
+      <div class="cta-strip__label">微信 YMHomeLink · 扫码添加</div>
+    </div>
+  </div>
+</section>
 
 <!-- ========== FOOTER ========== -->
 <!--[FOOTER START]-->
@@ -101,13 +105,13 @@
       <div class="footer__col">
         <h4>联系方式</h4>
         <div class="footer__social">
-          <a href="https://mp.weixin.qq.com/" target="_blank" rel="noopener">📰 公众号：青春期家庭指南</a>
+          <a href="https://mp.weixin.qq.com/" target="_blank" rel="noopener">公众号：青春期家庭指南</a>
         </div>
         <div class="footer__social">
-          <a href="https://www.douyin.com/user/YMHomelink" target="_blank" rel="noopener">📱 抖音：YMHomelink</a>
+          <a href="https://www.douyin.com/user/YMHomelink" target="_blank" rel="noopener">抖音：YMHomelink</a>
         </div>
         <div class="footer__social">
-          <a href="#">📕 小红书：即将上线</a>
+          <a href="#">小红书：即将上线</a>
         </div>
       </div>
       <div class="footer__col">

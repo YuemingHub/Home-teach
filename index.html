@@ -48,10 +48,11 @@
   <!-- Hero -->
   <section class="hero">
     <div class="container">
+      <div class="hero__kicker">家庭教育</div>
       <h1 class="hero__title">
         你不是一个人。<br>孩子不是坏了。
       </h1>
-      <p class="hero__subtitle">目标不是听话优秀，而是自我运转的孩子。</p>
+      <p class="hero__subtitle">目标不是听话优秀，而是自我运转的孩子。四层递进，找到你家现在的卡点，一层一层解开。</p>
     </div>
   </section>
 
@@ -74,7 +75,7 @@
     </div>
   </section>
 
-  <!-- 极简自评工具 -->
+  <!-- 四层自评工具 -->
   <section class="section" style="padding-top:0">
     <div class="container">
       <div class="section-header reveal">
@@ -83,54 +84,30 @@
       </div>
 
       <div class="self-eval reveal" id="self-eval">
-        <div class="self-eval__steps">
-          <!-- Q1 -->
-          <div class="self-eval__q" data-q="1">
-            <div class="self-eval__q-text">孩子能跟你好好说话吗？</div>
-            <div class="self-eval__options">
-              <button class="self-eval__opt" data-val="1">能</button>
-              <button class="self-eval__opt" data-val="2">有时能</button>
-              <button class="self-eval__opt" data-val="3">基本不能</button>
-            </div>
-          </div>
-          <!-- Q2 -->
-          <div class="self-eval__q" data-q="2" style="display:none;">
-            <div class="self-eval__q-text">家里有明确写下来的规矩吗？</div>
-            <div class="self-eval__options">
-              <button class="self-eval__opt" data-val="1">有</button>
-              <button class="self-eval__opt" data-val="2">有但没执行</button>
-              <button class="self-eval__opt" data-val="3">没有</button>
-            </div>
-          </div>
-          <!-- Q3 -->
-          <div class="self-eval__q" data-q="3" style="display:none;">
-            <div class="self-eval__q-text">规矩能真正执行下去吗？</div>
-            <div class="self-eval__options">
-              <button class="self-eval__opt" data-val="1">能</button>
-              <button class="self-eval__opt" data-val="2">有时能</button>
-              <button class="self-eval__opt" data-val="3">说不算</button>
-            </div>
-          </div>
-          <!-- Q4 -->
-          <div class="self-eval__q" data-q="4" style="display:none;">
-            <div class="self-eval__q-text">孩子愿意主动做事，不需要催？</div>
-            <div class="self-eval__options">
-              <button class="self-eval__opt" data-val="1">愿意</button>
-              <button class="self-eval__opt" data-val="2">偶尔愿意</button>
-              <button class="self-eval__opt" data-val="3">不愿意</button>
-            </div>
-          </div>
+        <!-- 开始页 -->
+        <div class="self-eval__start" id="self-eval-start">
+          <div class="self-eval__q-text" style="margin-bottom:16px;">你家现在卡在哪一层？</div>
+          <p style="font-size:0.85rem;color:var(--body);margin-bottom:20px;text-align:center;">回答4个问题，找到你家现在的位置</p>
+          <button class="btn btn--primary" id="self-eval-start-btn" style="margin:0 auto;display:block;">开始自评 →</button>
         </div>
-        <!-- 结果 -->
+
+        <!-- 题目区 -->
+        <div class="self-eval__qs" id="self-eval-qs" style="display:none;">
+          <div class="self-eval__q-text" id="self-eval-q-text"></div>
+          <div class="self-eval__options" id="self-eval-options"></div>
+        </div>
+
+        <!-- 结果页 -->
         <div class="self-eval__result" id="self-eval-result" style="display:none;">
-          <div class="self-eval__result-title">你家卡在：</div>
+          <div class="self-eval__result-title">你家目前卡在：</div>
           <div class="self-eval__result-layer" id="result-layer"></div>
           <div class="self-eval__result-desc" id="result-desc"></div>
           <div class="self-eval__result-cta">
-            <p>需要帮你判断准确卡点？加我微信，简单说说情况。</p>
-            <img src="images/qr/qrcode-wechat-mp.jpg" alt="微信" class="self-eval__result-qr">
-            <div style="font-size:0.75rem;color:var(--body);">💬 ampersir · 扫码添加</div>
+            <p style="font-size:0.85rem;color:var(--body);margin-bottom:12px;">想聊聊具体怎么做？加微信 <strong>YMHomeLink</strong>，备注"自评"，我帮你看看。</p>
+            <img src="images/qr/qrcode-wechat-personal.png" alt="微信公众号二维码" class="self-eval__result-qr">
+            <div style="font-size:0.75rem;color:var(--body);">微信 YMHomeLink · 扫码添加</div>
           </div>
+          <button class="btn btn--ghost" id="self-eval-reset" style="margin:16px auto 0;display:block;">← 重新测试</button>
         </div>
       </div>
     </div>
@@ -146,26 +123,30 @@
         <p class="section-header__subtitle">不能跨层修，下层不稳，上层不建</p>
       </div>
 
-      <div class="layers-grid">
-        <div class="layer-card reveal">
-          <div class="layer-card__num">第一层</div>
-          <div class="layer-card__title">撑住（关系底盘）</div>
-          <div class="layer-card__desc">孩子需要一个安全的家。关系好了，其他一切才有可能。</div>
+      <div class="pyramid-visual reveal">
+        <div class="pv-layer pv-layer-4">
+          <div class="pv-layer__label">第四层</div>
+          <div class="pv-layer__name">长出价值</div>
+          <div class="pv-layer__sub">孩子能做事，但看不见自己的价值</div>
         </div>
-        <div class="layer-card reveal">
-          <div class="layer-card__num">第二层</div>
-          <div class="layer-card__title">立规（规则驱动）</div>
-          <div class="layer-card__desc">边界清晰，孩子才有安全感。有规矩，才有真正的自由。</div>
+        <div class="pv-arrow">▲</div>
+        <div class="pv-layer pv-layer-3">
+          <div class="pv-layer__label">第三层</div>
+          <div class="pv-layer__name">一致执行</div>
+          <div class="pv-layer__sub">规矩说了不算，执行不稳定</div>
         </div>
-        <div class="layer-card reveal">
-          <div class="layer-card__num">第三层</div>
-          <div class="layer-card__title">执行（一致执行）</div>
-          <div class="layer-card__desc">规则不落地，等于没有。一致执行，孩子才知道边界是真的。</div>
+        <div class="pv-arrow">▲</div>
+        <div class="pv-layer pv-layer-2">
+          <div class="pv-layer__label">第二层</div>
+          <div class="pv-layer__name">规则驱动</div>
+          <div class="pv-layer__sub">边界模糊，孩子不知道底线在哪</div>
         </div>
-      </div>
-
-      <div style="text-align:center; margin-top:32px;" class="reveal">
-        <a href="system.html" class="btn btn--secondary">查看四层地图 →</a>
+        <div class="pv-arrow">▲</div>
+        <div class="pv-layer pv-layer-1">
+          <div class="pv-layer__label">第一层</div>
+          <div class="pv-layer__name">关系底盘</div>
+          <div class="pv-layer__sub">亲子沟通断裂，其他一切免谈</div>
+        </div>
       </div>
     </div>
   </section>
@@ -187,8 +168,13 @@
         </div>
         <div class="trust-bar__divider"></div>
         <div class="trust-bar__quote">
-          <div class="trust-bar__quote-text">"原来孩子不是不想好，是没有人帮他看见自己可以。"</div>
-          <div class="trust-bar__quote-author">— 西安家长，孩子14岁厌学半年</div>
+          <div class="trust-bar__quote-text">"孩子14岁，厌学半年，家里天天吵。用了一致执行后，孩子主动说'妈，我想试试回学校'。"</div>
+          <div class="trust-bar__quote-author">— 西安家长，2026年3月</div>
+        </div>
+        <div class="trust-bar__divider"></div>
+        <div class="trust-bar__quote">
+          <div class="trust-bar__quote-text">"我以前只会说'你真棒'，现在会说'你自己整理了书包，这叫自律'。孩子眼睛亮了。"</div>
+          <div class="trust-bar__quote-author">— 西安家长，孩子12岁，2026年4月</div>
         </div>
       </div>
     </div>
@@ -205,35 +191,77 @@
       </div>
 
       <div class="circles-wrap reveal">
-        <svg class="circles-svg" viewBox="0 0 400 440" xmlns="http://www.w3.org/2000/svg">
-          <!-- 第四圈 社会圈 最外 -->
-          <circle cx="200" cy="220" r="190" fill="none" stroke="#E8DCCF" stroke-width="28"/>
-          <!-- 第三圈 家庭圈 -->
-          <circle cx="200" cy="220" r="142" fill="none" stroke="#D4B896" stroke-width="26"/>
-          <!-- 第二圈 父母圈 -->
-          <circle cx="200" cy="220" r="94" fill="none" stroke="#C9A96E" stroke-width="24"/>
-          <!-- 第一圈 自我圈 中心实心 -->
-          <circle cx="200" cy="220" r="46" fill="#C9A96E" opacity="0.15" stroke="#C9A96E" stroke-width="22"/>
+        <div class="vc4-anim" id="vc4-anim">
+          <!-- SVG同心圆 -->
+          <svg class="vc4-svg" viewBox="0 0 480 400" xmlns="http://www.w3.org/2000/svg">
+            <!-- 第四圈 社会圈 最外 -->
+            <circle class="vc4-ring vc4-ring--4" cx="240" cy="200" r="175" fill="none" stroke="#E8DCCF" stroke-width="28"/>
+            <!-- 第三圈 家庭圈 -->
+            <circle class="vc4-ring vc4-ring--3" cx="240" cy="200" r="128" fill="none" stroke="#D4B896" stroke-width="26"/>
+            <!-- 第二圈 父母圈 -->
+            <circle class="vc4-ring vc4-ring--2" cx="240" cy="200" r="81" fill="none" stroke="#C9A96E" stroke-width="24"/>
+            <!-- 第一圈 自我圈 中心 -->
+            <circle class="vc4-ring vc4-ring--1" cx="240" cy="200" r="44" fill="#C9A96E" fill-opacity="0.12" stroke="#C9A96E" stroke-width="22"/>
 
-          <!-- 中心文字 -->
-          <text x="200" y="216" text-anchor="middle" fill="#2C3E3B" font-size="12" font-weight="700" font-family="Noto Serif SC, serif">自我圈</text>
-          <text x="200" y="232" text-anchor="middle" fill="#4A4A4A" font-size="9" font-family="Noto Sans SC, sans-serif">我能管住自己</text>
+            <!-- 中心：自我圈文字 -->
+            <text x="240" y="197" text-anchor="middle" fill="#2C3E3B" font-size="13" font-weight="700" font-family="Noto Serif SC, serif">自我圈</text>
+            <text x="240" y="213" text-anchor="middle" fill="#4A4A4A" font-size="9" font-family="Noto Sans SC, sans-serif">我和自己的关系</text>
 
-          <!-- 顶部 社会圈 -->
-          <text x="200" y="18" text-anchor="middle" fill="#B08A55" font-size="11" font-weight="700" font-family="Noto Serif SC, serif">社会圈</text>
-          <text x="200" y="32" text-anchor="middle" fill="#4A4A4A" font-size="8" font-family="Noto Sans SC, sans-serif">我能帮助别人</text>
+            <!-- 右上：社会圈标签 -->
+            <g class="vc4-label vc4-label--4">
+              <text x="380" y="80" fill="#B08A55" font-size="12" font-weight="700" font-family="Noto Serif SC, serif">社会圈</text>
+              <text x="380" y="96" fill="#4A4A4A" font-size="9" font-family="Noto Sans SC, sans-serif">我和世界的关系</text>
+            </g>
 
-          <!-- 右侧 家庭圈 -->
-          <text x="382" y="224" text-anchor="middle" fill="#B08A55" font-size="11" font-weight="700" font-family="Noto Serif SC, serif">家庭圈</text>
-          <text x="382" y="238" text-anchor="middle" fill="#4A4A4A" font-size="8" font-family="Noto Sans SC, sans-serif">我是家里重要的人</text>
+            <!-- 左上：家庭圈标签 -->
+            <g class="vc4-label vc4-label--3">
+              <text x="90" y="100" fill="#B08A55" font-size="12" font-weight="700" font-family="Noto Serif SC, serif">家庭圈</text>
+              <text x="90" y="116" fill="#4A4A4A" font-size="9" font-family="Noto Sans SC, sans-serif">我和家庭的关系</text>
+            </g>
 
-          <!-- 左侧 父母圈 -->
-          <text x="18" y="224" text-anchor="middle" fill="#C9A96E" font-size="11" font-weight="700" font-family="Noto Serif SC, serif">父母圈</text>
-          <text x="18" y="238" text-anchor="middle" fill="#4A4A4A" font-size="8" font-family="Noto Sans SC, sans-serif">我让家里好了一点</text>
+            <!-- 右下：父母圈标签 -->
+            <g class="vc4-label vc4-label--2">
+              <text x="340" y="268" fill="#C9A96E" font-size="12" font-weight="700" font-family="Noto Serif SC, serif">父母圈</text>
+              <text x="340" y="284" fill="#4A4A4A" font-size="9" font-family="Noto Sans SC, sans-serif">我和父母的关系</text>
+            </g>
 
-          <!-- 底部提示 -->
-          <text x="200" y="432" text-anchor="middle" fill="#B08A55" font-size="11" font-weight="700" font-family="Noto Serif SC, serif">从内向外，层层扩展</text>
-        </svg>
+            <!-- 左下：展开箭头（初始隐藏，动画时显示） -->
+            <g class="vc4-expand-arrow" opacity="0">
+              <text x="240" y="386" text-anchor="middle" fill="#C9A96E" font-size="20" font-weight="300">⋯</text>
+            </g>
+          </svg>
+
+          <!-- 步骤说明（渐进显示） -->
+          <div class="vc4-steps">
+            <div class="vc4-step" data-step="1">
+              <div class="vc4-step__num">1</div>
+              <div class="vc4-step__text">先看见自己——我能管住自己，这是所有价值的起点</div>
+            </div>
+            <div class="vc4-step" data-step="2">
+              <div class="vc4-step__num">2</div>
+              <div class="vc4-step__text">向外一层——我的行为对父母有影响，让他们轻松了、有力量了</div>
+            </div>
+            <div class="vc4-step" data-step="3">
+              <div class="vc4-step__num">3</div>
+              <div class="vc4-step__text">再向外一层——我在家庭中有位置，我是家里重要的人</div>
+            </div>
+            <div class="vc4-step" data-step="4">
+              <div class="vc4-step__num">4</div>
+              <div class="vc4-step__text">延伸到世界——我能帮助别人，我在更大的世界中有价值</div>
+            </div>
+          </div>
+
+          <div class="vc4-hint">从内向外，层层扩展</div>
+
+          <!-- 重播按钮 -->
+          <button class="vc4-replay" onclick="resetVc4Anim()">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="14" height="14">
+              <polyline points="1 4 1 10 7 10"/>
+              <path d="M3.51 15a9 9 0 1 0 .49-3.51"/>
+            </svg>
+            重播
+          </button>
+        </div>
       </div>
 
       <div style="text-align:center;" class="reveal">
@@ -254,10 +282,10 @@
           <img src="images/qr/qrcode-wechat-personal.png" alt="公众号二维码" class="mp-card__qr" onerror="this.style.display='none'">
           <div class="mp-card__qr-caption">扫码关注「青春期家庭指南」</div>
           <div class="mp-card__stats">
-            <div class="mp-card__stat">📝 <strong>61</strong> 篇原创</div>
-            <div class="mp-card__stat">📖 <strong>持续</strong> 更新</div>
+            <div class="mp-card__stat"><strong>61</strong> 篇原创</div>
+            <div class="mp-card__stat"><strong>持续</strong> 更新</div>
           </div>
-          <a href="qr-wechat-mp.html" class="btn btn--secondary"><!-- TODO: 替换为公众号真实主页链接 -->📰 公众号：青春期家庭指南 →</a>
+          <a href="qr-wechat-mp.html" class="btn btn--secondary"><!-- TODO: 替换为公众号真实主页链接 -->公众号：青春期家庭指南 →</a>
         </div>
       </div>
     </div>
@@ -275,14 +303,14 @@
 
       <div class="resource-list reveal">
         <a href="resources/judge-flowchart.html" class="resource-item" target="_blank">
-          <div class="resource-item__icon">📄</div>
+          <div class="resource-item__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="20" height="20"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg></div>
           <div class="resource-item__info">
             <h4>判断流程图</h4>
             <small>可打印版 · 判断你家卡在哪一层 &nbsp;（按 Ctrl+P 打印或保存为 PDF）</small>
           </div>
         </a>
         <a href="resources/parent-checklist.pdf" class="resource-item" target="_blank">
-          <div class="resource-item__icon">📋</div>
+          <div class="resource-item__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="20" height="20"><path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="1"/><line x1="9" y1="12" x2="15" y2="12"/><line x1="9" y1="16" x2="13" y2="16"/></svg></div>
           <div class="resource-item__info">
             <h4>家长自检句卡片</h4>
             <small>PDF下载 · 10句日常话术 · 贴在冰箱上随时用</small>
@@ -299,23 +327,23 @@
     <div class="container">
       <div class="three-cols">
         <div class="three-col reveal">
-          <div class="three-col__icon">🗺️</div>
+          <div class="three-col__icon"><svg viewBox="0 0 24 24" fill="none" stroke="#C9A96E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="28" height="28"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/><line x1="8" y1="2" x2="8" y2="18"/><line x1="16" y1="6" x2="16" y2="22"/></svg>️</div>
           <div class="three-col__title">四层地图</div>
           <div class="three-col__desc">家庭教育不是到处救火，是有地图的</div>
           <a href="system.html" class="btn btn--ghost" style="margin-top:12px;">查看体系 →</a>
         </div>
         <div class="three-col reveal">
-          <div class="three-col__icon">🔄</div>
+          <div class="three-col__icon"><svg viewBox="0 0 24 24" fill="none" stroke="#C9A96E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="28" height="28"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg></div>
           <div class="three-col__title">价值四圈</div>
           <div class="three-col__desc">让孩子看见自己的价值，不是夸他，是帮他看见</div>
           <a href="value.html" class="btn btn--ghost" style="margin-top:12px;">了解四圈 →</a>
         </div>
         <div class="three-col reveal">
-          <div class="three-col__icon">💬</div>
+          <div class="three-col__icon"><svg viewBox="0 0 24 24" fill="none" stroke="#C9A96E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="28" height="28"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
           <div class="three-col__title">真实案例</div>
           <div class="three-col__desc">他们不是个案，他们也是你的故事</div>
           <a href="cases.html" class="btn btn--ghost" style="margin-top:12px;">阅读案例 →</a>
-          <a href="cases.html" class="case-card__cta">查看全部案例 →</a>
+        </div>
       </div>
     </div>
   </section>
@@ -343,21 +371,6 @@
       </div>
     </div>
   </section>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- CTA 低门槛行动引导 -->
-  <section class="section" style="padding-top:0; padding-bottom:40px;">
-    <div class="container">
-      <div class="cta-strip reveal">
-        <div class="cta-strip__text">遇到卡点不知道怎么办？<strong>直接加我微信</strong>，简单说明情况，帮你判断卡在哪一层。</div>
-        <img src="images/qr/qrcode-wechat-mp.jpg" alt="微信二维码" class="cta-strip__qr" onerror="this.style.display='none'">
-        <div class="cta-strip__label">💬 ampersir<br>扫码添加</div>
-      </div>
-    </div>
-  </section>
 </main>
 <!-- ========== /MAIN CONTENT ========== -->
 
@@ -374,13 +387,13 @@
       <div class="footer__col">
         <h4>联系方式</h4>
         <div class="footer__social">
-          <a href="qr-wechat-mp.html"><!-- TODO: 替换为公众号真实主页链接 -->📰 公众号：青春期家庭指南</a>
+          <a href="qr-wechat-mp.html"><!-- TODO: 替换为公众号真实主页链接 -->公众号：青春期家庭指南</a>
         </div>
         <div class="footer__social">
-          <a href="https://www.douyin.com/user/YMHomelink" target="_blank" rel="noopener">📱 抖音：YMHomelink</a>
+          <a href="https://www.douyin.com/user/YMHomelink" target="_blank" rel="noopener">抖音：YMHomelink</a>
         </div>
         <div class="footer__social">
-          <a href="#">📕 小红书：即将上线</a>
+          <a href="#">小红书：即将上线</a>
         </div>
       </div>
       <div class="footer__col">
