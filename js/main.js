@@ -207,6 +207,57 @@
     });
   });
 
+  /* ==========================================
+     极简自评工具
+     ========================================== */
+  const selfEval = document.getElementById('self-eval');
+  if (selfEval) {
+    const resultEl = document.getElementById('self-eval-result');
+    const resultLayer = document.getElementById('result-layer');
+    const resultDesc = document.getElementById('result-desc');
+    let currentQ = 1;
+    const answers = [];
+
+    function showQ(n) {
+      selfEval.querySelectorAll('.self-eval__q').forEach(q => q.style.display = 'none');
+      selfEval.querySelector('[data-q="' + n + '"]').style.display = '';
+    }
+
+    selfEval.querySelectorAll('.self-eval__opt').forEach(btn => {
+      btn.addEventListener('click', function() {
+        const q = parseInt(this.closest('.self-eval__q').dataset.q, 10);
+        answers[q - 1] = parseInt(this.dataset.val, 10);
+
+        if (q < 4) {
+          showQ(q + 1);
+        } else {
+          showQ(0); // hide all
+          selfEval.querySelector('.self-eval__steps').style.display = 'none';
+
+          let layer, desc;
+          // Q4 value 3 = layer 4
+          if (answers[3] === 3) {
+            layer = '第四层 · 价值长出';
+            desc = '孩子不是不想做，是还没有看见自己的价值。需要帮他在具体行为中看到自己的力量，从第一圈开始。';
+          } else if (answers[3] === 2 || answers[2] === 3) {
+            layer = '第三层 · 一致执行';
+            desc = '规矩说了不算，执行不稳定。孩子知道规矩存在，但没有内化。需要家长保持一致，不轻易松口。';
+          } else if (answers[1] === 3 || answers[2] === 2) {
+            layer = '第二层 · 规则驱动';
+            desc = '家里缺少明确的边界和规矩。孩子的安全感需要来自清晰的规则，先写下来，再慢慢执行。';
+          } else {
+            layer = '第一层 · 关系底盘';
+            desc = '亲子沟通出现断裂，孩子不想跟家长说话。这个时候谈规矩和价值都没有意义，先修复关系。';
+          }
+
+          resultLayer.textContent = layer;
+          resultDesc.textContent = desc;
+          resultEl.style.display = '';
+        }
+      });
+    });
+  }
+
   // Close on outside click
   document.addEventListener('click', (e) => {
     if (bubble && bubble.classList.contains('visible')) {
