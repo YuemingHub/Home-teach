@@ -2645,10 +2645,10 @@ input::placeholder {
 /* 第二圈：中棕 - 中等深度 */
 /* 第三圈：浅棕 - 较浅 */
 /* 第四圈（最外）：米白 - 最浅 */
-.vc-ring--4 { width: 360px; height: 360px; background: #E8DCCF; border: 3px solid #D4C4B0; z-index: 4; }
-.vc-ring--3 { width: 268px; height: 268px; background: #C4A882; border: 3px solid #B39872; z-index: 3; }
-.vc-ring--2 { width: 176px; height: 176px; background: #8B7355; border: 3px solid #7A6344; z-index: 2; }
-.vc-ring--1 { width: 84px; height: 84px; background: #5C4033; border: 3px solid #4A3228; z-index: 1; box-shadow: 0 0 20px rgba(92,64,51,0.4); }
+.vc-ring--4 { width: 360px; height: 360px; background: #E8DCCF; border: 3px solid #D4C4B0; z-index: 1; }
+.vc-ring--3 { width: 268px; height: 268px; background: #C4A882; border: 3px solid #B39872; z-index: 2; }
+.vc-ring--2 { width: 176px; height: 176px; background: #8B7355; border: 3px solid #7A6344; z-index: 3; }
+.vc-ring--1 { width: 84px; height: 84px; background: #5C4033; border: 3px solid #4A3228; z-index: 4; box-shadow: 0 0 20px rgba(92,64,51,0.4); }
 
 /* 悬浮效果 */
 .vc-ring:hover {

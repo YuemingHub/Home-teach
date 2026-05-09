@@ -148,19 +148,25 @@
 
   // 初始化同心圆
   function initCircleInteraction() {
-    // 确保第一圈已解锁
-    const firstRing = document.querySelector('.vc-ring--1');
-    if (firstRing) {
-      firstRing.classList.add('unlocked');
-    }
+    rings.forEach(ring => {
+      const ringLevel = parseInt(ring.dataset.ring, 10);
 
-    // 其他圈保持锁定
-    rings.forEach((ring, index) => {
-      if (index > 0) {
-        ring.classList.add('locked');
+      ring.classList.remove('active', 'unlocking', 'content-reveal', 'pulse-ready');
+
+      if (ringLevel === 1) {
+        ring.classList.remove('locked');
+        ring.classList.add('unlocked');
+      } else {
         ring.classList.remove('unlocked');
+        ring.classList.add('locked');
       }
     });
+
+    maxUnlocked = 1;
+    isAllUnlocked = false;
+    firstClickDone = false;
+
+    const firstRing = document.querySelector('.vc-ring--1');
 
     // 显示初始手指引导
     setTimeout(() => {
