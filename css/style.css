@@ -1262,3 +1262,620 @@ body.calm-home.is-awake .moon-core {
     break-inside: avoid;
   }
 }
+
+
+/* === Night Home Redesign === */
+:root {
+  --night: #07130f;
+  --night-soft: #0c1f18;
+  --deep-green: #102c23;
+  --mist-green: #9fb8a8;
+  --moon-soft: rgba(244, 232, 189, 0.18);
+  --paper-dark: rgba(255, 248, 224, 0.06);
+  --paper-line: rgba(255, 248, 224, 0.12);
+  --text-main: #f3ead1;
+  --text-soft: #c7d3c5;
+  --text-muted: #87988d;
+  --warm: #caa873;
+}
+
+body[data-page="home"] {
+  background:
+    radial-gradient(circle at 18% 16%, rgba(244, 232, 189, 0.08), transparent 22rem),
+    radial-gradient(circle at 80% 14%, rgba(159, 184, 168, 0.08), transparent 28rem),
+    linear-gradient(180deg, #0b1914 0%, var(--night-soft) 36%, var(--night) 100%);
+  color: var(--text-main);
+}
+
+body[data-page="home"]::before {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.015) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.012) 1px, transparent 1px);
+  mask-image: linear-gradient(to bottom, rgba(0,0,0,0.32), transparent 78%);
+}
+
+body[data-page="home"] .site-header {
+  background: rgba(7, 19, 15, 0.58);
+  border-bottom-color: rgba(255, 248, 224, 0.08);
+}
+
+body[data-page="home"] .home-main {
+  overflow: clip;
+}
+
+body[data-page="home"] .section-shell {
+  width: min(calc(100% - 32px), 1160px);
+}
+
+body[data-page="home"] .soft-button.primary {
+  margin-top: 0;
+  background: rgba(244, 232, 189, 0.94);
+  color: #1a241e;
+  border-color: rgba(244, 232, 189, 0.24);
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.24);
+}
+
+body[data-page="home"] .soft-button.primary:hover,
+body[data-page="home"] .soft-button.primary:focus-visible {
+  background: #fbf0c8;
+  box-shadow: 0 18px 56px rgba(0, 0, 0, 0.28);
+}
+
+body[data-page="home"] .soft-button.secondary {
+  background: rgba(255, 248, 224, 0.06);
+  border-color: rgba(255, 248, 224, 0.12);
+  color: var(--text-main);
+  box-shadow: none;
+}
+
+body[data-page="home"] .soft-button.secondary:hover,
+body[data-page="home"] .soft-button.secondary:focus-visible {
+  background: rgba(255, 248, 224, 0.1);
+  border-color: rgba(255, 248, 224, 0.22);
+}
+
+.night-hero,
+.night-state,
+.night-routes,
+.night-work {
+  position: relative;
+}
+
+.night-hero {
+  min-height: calc(100vh - 74px);
+  display: grid;
+  align-items: center;
+  padding: 88px 0 44px;
+}
+
+.night-hero__shell {
+  position: relative;
+  display: grid;
+  align-items: center;
+  min-height: calc(100vh - 162px);
+}
+
+.night-hero__copy {
+  position: relative;
+  z-index: 1;
+  width: min(100%, 35rem);
+  padding: 1.2rem 0 3rem;
+}
+
+body[data-page="home"] .night-hero .eyebrow,
+body[data-page="home"] .night-state .eyebrow,
+body[data-page="home"] .night-routes .eyebrow,
+body[data-page="home"] .night-work .eyebrow {
+  margin-bottom: 14px;
+  color: var(--moon);
+  letter-spacing: 0.16em;
+  text-transform: none;
+}
+
+body[data-page="home"] .night-hero h1,
+body[data-page="home"] .night-state h2,
+body[data-page="home"] .night-routes h2,
+body[data-page="home"] .night-work h2,
+body[data-page="home"] .night-state__response h3,
+body[data-page="home"] .night-route-card h3,
+body[data-page="home"] .work-card h3 {
+  color: var(--text-main);
+}
+
+body[data-page="home"] .night-hero h1 {
+  max-width: 8ch;
+  font-size: clamp(2.8rem, 10vw, 5.6rem);
+  line-height: 1.06;
+  letter-spacing: 0.01em;
+}
+
+.night-hero__poem {
+  margin-top: 28px;
+  display: grid;
+  gap: 18px;
+}
+
+.night-hero__poem p {
+  margin: 0;
+  max-width: 18em;
+  font-family: var(--font-serif);
+  font-size: clamp(1.08rem, 2.8vw, 1.45rem);
+  line-height: 1.95;
+  color: var(--text-soft);
+  text-wrap: pretty;
+}
+
+.night-moon {
+  position: absolute;
+  top: 48%;
+  right: 5%;
+  width: min(42vw, 420px);
+  aspect-ratio: 1;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+.night-moon__core,
+.night-moon__ring,
+.night-moon__halo,
+.night-moon__mist {
+  position: absolute;
+  border-radius: 999px;
+}
+
+.night-moon__halo {
+  inset: 0;
+  background: radial-gradient(circle, rgba(244, 232, 189, 0.12), transparent 64%);
+  filter: blur(8px);
+}
+
+.night-moon__core {
+  inset: 29%;
+  background: radial-gradient(circle at 36% 34%, #fff8df 0%, #f4e8bd 56%, #d9bf82 100%);
+  box-shadow: 0 0 55px rgba(244, 232, 189, 0.36), 0 0 120px rgba(244, 232, 189, 0.1);
+  animation: night-moon-breathe 7s ease-in-out infinite;
+}
+
+.night-moon__ring {
+  border: 1px solid rgba(255, 248, 224, 0.1);
+  animation: night-ring-breathe 7s ease-in-out infinite;
+}
+
+.night-moon__ring--one {
+  inset: 18%;
+}
+
+.night-moon__ring--two {
+  inset: 4%;
+  animation-delay: 1.2s;
+  border-color: rgba(159, 184, 168, 0.12);
+}
+
+.night-moon__mist {
+  width: 10px;
+  height: 10px;
+  background: rgba(159, 184, 168, 0.36);
+  animation: night-mist 8.4s ease-in-out infinite;
+}
+
+.night-moon__mist--one { left: 18%; top: 26%; }
+.night-moon__mist--two { right: 12%; top: 42%; animation-delay: 1.4s; }
+.night-moon__mist--three { left: 46%; bottom: 14%; animation-delay: 2.8s; }
+
+body[data-page="home"].is-awake .night-moon__core {
+  box-shadow: 0 0 72px rgba(244, 232, 189, 0.48), 0 0 150px rgba(159, 184, 168, 0.14);
+}
+
+body[data-page="home"].is-awake .night-moon__ring--two {
+  transform: scale(1.04);
+}
+
+.night-state,
+.night-routes,
+.night-work {
+  padding: 88px 0 0;
+}
+
+.night-state .section-shell,
+.night-routes .section-shell,
+.night-work .section-shell {
+  border: 1px solid var(--paper-line);
+  border-radius: 32px;
+  background: linear-gradient(180deg, rgba(255, 248, 224, 0.045), rgba(255, 248, 224, 0.018));
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.24);
+  backdrop-filter: blur(14px);
+}
+
+.night-state .section-shell {
+  max-width: 820px;
+  padding: 34px 24px;
+}
+
+body[data-page="home"]:not(.is-awake) .night-state .section-shell {
+  opacity: 0;
+  transform: translateY(18px);
+  pointer-events: none;
+}
+
+body[data-page="home"].is-awake .night-state .section-shell {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 520ms ease, transform 520ms ease;
+}
+
+body[data-page="home"] .section-lead {
+  color: var(--text-soft);
+}
+
+.night-state__choices {
+  margin-top: 28px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.night-state__choice {
+  min-height: 48px;
+  padding: 12px 18px;
+  border-radius: 999px;
+  border: 1px solid var(--paper-line);
+  background: rgba(255, 248, 224, 0.04);
+  color: var(--text-soft);
+  transition: transform 180ms ease, background 180ms ease, border-color 180ms ease, color 180ms ease;
+}
+
+.night-state__choice:hover,
+.night-state__choice:focus-visible,
+.night-state__choice.is-selected {
+  outline: none;
+  transform: translateY(-2px);
+  background: rgba(255, 248, 224, 0.1);
+  border-color: rgba(255, 248, 224, 0.2);
+  color: var(--text-main);
+}
+
+.night-state__response {
+  margin-top: 22px;
+  padding: 24px;
+  border-radius: 28px;
+  border: 1px solid rgba(255, 248, 224, 0.1);
+  background: rgba(255, 248, 224, 0.04);
+}
+
+.night-state__response h3 {
+  font-size: clamp(1.38rem, 3vw, 2rem);
+}
+
+.night-state__response p {
+  margin: 12px 0 0;
+  color: var(--text-soft);
+}
+
+.night-state__response .soft-button {
+  margin-top: 18px;
+}
+
+.night-routes .section-shell,
+.night-work .section-shell {
+  padding: 34px 24px;
+}
+
+.night-routes__grid {
+  margin-top: 28px;
+  display: grid;
+  gap: 16px;
+}
+
+.night-route-card {
+  padding: 24px;
+  border-radius: 28px;
+  border: 1px solid var(--paper-line);
+  background: rgba(255, 248, 224, 0.04);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.18);
+  transition: transform 180ms ease, background 180ms ease, border-color 180ms ease;
+}
+
+.night-route-card:hover,
+.night-route-card:focus-within {
+  transform: translateY(-2px);
+  background: rgba(255, 248, 224, 0.06);
+  border-color: rgba(255, 248, 224, 0.18);
+}
+
+.night-route-card__number,
+.work-card__index {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 38px;
+  height: 38px;
+  padding: 0 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(244, 232, 189, 0.18);
+  color: var(--moon);
+  background: rgba(244, 232, 189, 0.05);
+  font-size: 0.85rem;
+  letter-spacing: 0.08em;
+}
+
+.night-route-card h3,
+.work-card h3 {
+  margin-top: 18px;
+  font-size: clamp(1.26rem, 3.2vw, 1.8rem);
+}
+
+.night-route-card p,
+.work-card p {
+  margin: 10px 0 0;
+  color: var(--text-soft);
+}
+
+body[data-page="home"] .text-link {
+  margin-top: 18px;
+  display: inline-flex;
+  color: var(--text-main);
+}
+
+body[data-page="home"] .text-link::after {
+  content: " ?";
+}
+
+.night-work {
+  padding-bottom: 96px;
+}
+
+.night-work__intro {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 18px;
+  margin-bottom: 28px;
+}
+
+.work-carousel {
+  position: relative;
+}
+
+.work-carousel__controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.work-carousel__arrow {
+  width: 46px;
+  height: 46px;
+  border-radius: 999px;
+  border: 1px solid var(--paper-line);
+  background: rgba(255, 248, 224, 0.05);
+  color: var(--text-main);
+  transition: transform 180ms ease, background 180ms ease, border-color 180ms ease;
+}
+
+.work-carousel__arrow:hover,
+.work-carousel__arrow:focus-visible {
+  outline: none;
+  transform: translateY(-2px);
+  background: rgba(255, 248, 224, 0.1);
+  border-color: rgba(255, 248, 224, 0.2);
+}
+
+.work-carousel__viewport {
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  touch-action: pan-y;
+  cursor: grab;
+}
+
+.work-carousel__viewport::-webkit-scrollbar {
+  display: none;
+}
+
+.work-carousel__viewport.is-dragging {
+  cursor: grabbing;
+}
+
+.work-carousel__track {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(84%, 1fr);
+  gap: 16px;
+}
+
+.work-card {
+  scroll-snap-align: start;
+  border: 1px solid var(--paper-line);
+  border-radius: 28px;
+  background: rgba(255, 248, 224, 0.04);
+  box-shadow: 0 18px 42px rgba(0, 0, 0, 0.18);
+  overflow: hidden;
+  transition: transform 180ms ease, border-color 180ms ease, background 180ms ease;
+}
+
+.work-card:hover,
+.work-card:focus-within {
+  transform: translateY(-2px);
+  background: rgba(255, 248, 224, 0.055);
+  border-color: rgba(255, 248, 224, 0.18);
+}
+
+.work-card__cover {
+  min-height: 220px;
+  background:
+    radial-gradient(circle at 24% 20%, rgba(244, 232, 189, 0.16), transparent 28%),
+    linear-gradient(180deg, rgba(255, 248, 224, 0.05), rgba(255, 248, 224, 0.01)),
+    linear-gradient(135deg, #10231d 0%, #152b24 48%, #0d1915 100%);
+}
+
+.work-card__cover--02 { background:
+    radial-gradient(circle at 68% 22%, rgba(159, 184, 168, 0.18), transparent 24%),
+    linear-gradient(180deg, rgba(255, 248, 224, 0.05), rgba(255, 248, 224, 0.01)),
+    linear-gradient(135deg, #12211b 0%, #20332b 54%, #0f1714 100%); }
+.work-card__cover--03 { background:
+    radial-gradient(circle at 20% 76%, rgba(202, 168, 115, 0.14), transparent 24%),
+    linear-gradient(180deg, rgba(255, 248, 224, 0.05), rgba(255, 248, 224, 0.01)),
+    linear-gradient(135deg, #101f1a 0%, #183029 50%, #0d1714 100%); }
+.work-card__cover--04 { background:
+    radial-gradient(circle at 78% 42%, rgba(244, 232, 189, 0.12), transparent 26%),
+    linear-gradient(180deg, rgba(255, 248, 224, 0.05), rgba(255, 248, 224, 0.01)),
+    linear-gradient(135deg, #12231d 0%, #173129 52%, #0b1512 100%); }
+.work-card__cover--05 { background:
+    radial-gradient(circle at 24% 24%, rgba(159, 184, 168, 0.16), transparent 22%),
+    linear-gradient(180deg, rgba(255, 248, 224, 0.05), rgba(255, 248, 224, 0.01)),
+    linear-gradient(135deg, #0f1e18 0%, #1d3129 52%, #0c1512 100%); }
+.work-card__cover--06 { background:
+    radial-gradient(circle at 74% 20%, rgba(202, 168, 115, 0.14), transparent 24%),
+    linear-gradient(180deg, rgba(255, 248, 224, 0.05), rgba(255, 248, 224, 0.01)),
+    linear-gradient(135deg, #10211a 0%, #1a2f27 52%, #0c1612 100%); }
+
+.work-card__body {
+  padding: 22px;
+}
+
+.work-carousel__dots {
+  margin-top: 18px;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.work-carousel__dot {
+  width: 10px;
+  height: 10px;
+  padding: 0;
+  border: 0;
+  border-radius: 999px;
+  background: rgba(255, 248, 224, 0.22);
+  transition: transform 180ms ease, background 180ms ease;
+}
+
+.work-carousel__dot.is-active {
+  background: var(--moon);
+  transform: scale(1.15);
+}
+
+@keyframes night-moon-breathe {
+  0%, 100% { transform: scale(0.96); filter: brightness(0.98); }
+  50% { transform: scale(1.04); filter: brightness(1.04); }
+}
+
+@keyframes night-ring-breathe {
+  0%, 100% { transform: scale(0.96); opacity: 0.28; }
+  50% { transform: scale(1.03); opacity: 0.5; }
+}
+
+@keyframes night-mist {
+  0%, 100% { transform: translate3d(0, 0, 0); opacity: 0.24; }
+  50% { transform: translate3d(0, -12px, 0); opacity: 0.58; }
+}
+
+@media (min-width: 760px) {
+  .night-routes__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .work-carousel__track {
+    grid-auto-columns: minmax(45%, 1fr);
+  }
+}
+
+@media (min-width: 1100px) {
+  .work-carousel__track {
+    grid-auto-columns: minmax(31%, 1fr);
+  }
+}
+
+@media (max-width: 900px) {
+  .night-hero {
+    padding-top: 68px;
+  }
+
+  .night-moon {
+    top: 10px;
+    right: 50%;
+    width: min(62vw, 280px);
+    transform: translateX(50%);
+    opacity: 0.82;
+  }
+
+  .night-hero__copy {
+    padding-top: 210px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .night-hero__poem p {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  body[data-page="home"] .night-hero h1 {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .night-work__intro {
+    align-items: start;
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 640px) {
+  body[data-page="home"] .section-shell {
+    width: min(calc(100% - 24px), 1160px);
+  }
+
+  .night-state,
+  .night-routes,
+  .night-work {
+    padding-top: 68px;
+  }
+
+  .night-state .section-shell,
+  .night-routes .section-shell,
+  .night-work .section-shell {
+    padding: 24px 18px;
+    border-radius: 26px;
+  }
+
+  .night-state__choices {
+    flex-direction: column;
+  }
+
+  .night-state__choice,
+  .work-carousel__arrow,
+  .work-card .text-link,
+  body[data-page="home"] .soft-button {
+    width: 100%;
+  }
+
+  .work-carousel__controls {
+    width: 100%;
+  }
+
+  .work-carousel__track {
+    grid-auto-columns: 88%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body[data-page="home"] .night-state .section-shell {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+    pointer-events: auto;
+  }
+
+  .night-moon__core,
+  .night-moon__ring,
+  .night-moon__mist {
+    animation: none !important;
+  }
+
+  .work-carousel__viewport {
+    scroll-behavior: auto;
+  }
+}
+

@@ -1,4 +1,4 @@
-(() => {
+﻿(() => {
   const isSubPath = location.pathname.includes("/resources/");
   const prefix = isSubPath ? "../" : "";
 
@@ -21,7 +21,7 @@
           <a class="brand" href="${prefix}index.html" aria-label="回到首页">
             <span class="brand-mark" aria-hidden="true"></span>
             <span class="brand-text">
-              <strong>月明·向未来家庭教育</strong>
+              <strong>月明 · 向未来家庭教育</strong>
               <span>先安静，再看清</span>
             </span>
           </a>
@@ -32,8 +32,8 @@
 
           <nav class="site-nav" aria-label="主导航">
             ${navItems.map(([href, label]) => {
-              const active = current === href ? " is-active" : "";
-              return `<a class="${active.trim()}" href="${prefix}${href}">${label}</a>`;
+              const active = current === href ? "is-active" : "";
+              return `<a class="${active}" href="${prefix}${href}">${label}</a>`;
             }).join("")}
           </nav>
         </div>
@@ -46,7 +46,7 @@
     footer.innerHTML = `
       <footer class="site-footer">
         <div class="site-footer-inner">
-          <p>© ${new Date().getFullYear()} 月明·向未来家庭教育。慢一点，也是在往前走。</p>
+          <p>© ${new Date().getFullYear()} 月明 · 向未来家庭教育。慢一点，也是在往前走。</p>
           <div class="footer-links">
             <a href="${prefix}value.html">为什么走向未来</a>
             <a href="${prefix}engine.html">背后支撑</a>
