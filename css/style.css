@@ -16,7 +16,7 @@
   --home-bg-soft: #243734;
   --home-bg-deep: #101b1a;
   --home-ink: #F2ECE2;
-  --home-ink-soft: rgba(242, 236, 226, 0.78);
+  --home-ink-soft: rgba(246, 241, 232, 0.9);
   --home-line: rgba(246, 230, 175, 0.16);
   --home-card: rgba(255, 255, 255, 0.05);
   --home-card-strong: rgba(255, 255, 255, 0.08);
@@ -1274,7 +1274,7 @@ body.calm-home.is-awake .moon-core {
   --paper-dark: rgba(255, 248, 224, 0.06);
   --paper-line: rgba(255, 248, 224, 0.12);
   --text-main: #f3ead1;
-  --text-soft: #c7d3c5;
+  --text-soft: #d6e0d4;
   --text-muted: #87988d;
   --warm: #caa873;
 }
@@ -1617,7 +1617,7 @@ body[data-page="home"] .text-link {
 }
 
 body[data-page="home"] .text-link::after {
-  content: " ?";
+  content: " →";
 }
 
 .night-work {
@@ -1707,6 +1707,9 @@ body[data-page="home"] .text-link::after {
     radial-gradient(circle at 24% 20%, rgba(244, 232, 189, 0.16), transparent 28%),
     linear-gradient(180deg, rgba(255, 248, 224, 0.05), rgba(255, 248, 224, 0.01)),
     linear-gradient(135deg, #10231d 0%, #152b24 48%, #0d1915 100%);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 .work-card__cover--02 { background:
@@ -1879,3 +1882,74 @@ body[data-page="home"] .text-link::after {
   }
 }
 
+
+
+/* === Final readability polish === */
+body.calm-site.inner-page .page-hero .section-shell.narrow,
+body.calm-site.inner-page .quiet-content .section-shell.text-flow,
+body.calm-site.inner-page .quiet-content > .section-shell:not(.contact-shell) {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.068), rgba(255, 255, 255, 0.04));
+  border-color: rgba(246, 230, 175, 0.18);
+}
+
+body.calm-site.inner-page .page-lead,
+body.calm-site.inner-page .text-flow p,
+body.calm-site.inner-page .quiet-content p,
+body.calm-site.inner-page .layer-card p,
+body.calm-site.inner-page .case-card p,
+body.calm-site.inner-page .contact-aside p,
+body.calm-site.inner-page .site-footer,
+body.calm-site.inner-page .footer-links a {
+  color: rgba(246, 241, 232, 0.9);
+}
+
+body.calm-site.inner-page .layer-card,
+body.calm-site.inner-page .case-card,
+body.calm-site.inner-page .contact-form,
+body.calm-site.inner-page .contact-aside,
+body.calm-site.inner-page .soft-note {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.07), rgba(255, 255, 255, 0.04));
+  border-color: rgba(246, 230, 175, 0.18);
+  box-shadow: 0 24px 80px rgba(3, 8, 8, 0.28);
+}
+
+body.calm-site.inner-page .layer-card h2,
+body.calm-site.inner-page .case-card h2,
+body.calm-site.inner-page .contact-aside h2,
+body.calm-site.inner-page .page-hero h1,
+body.calm-site.inner-page .quiet-content h2,
+body.calm-site.inner-page .soft-note p,
+body.calm-site.inner-page .contact-form label {
+  color: var(--home-ink);
+}
+
+body.calm-site.inner-page .contact-form input,
+body.calm-site.inner-page .contact-form textarea,
+body.calm-site.inner-page .contact-form select {
+  background: rgba(255, 255, 255, 0.065);
+  color: var(--home-ink);
+}
+
+body.calm-site.inner-page .contact-form input::placeholder,
+body.calm-site.inner-page .contact-form textarea::placeholder {
+  color: rgba(246, 241, 232, 0.58);
+}
+
+body.calm-site.inner-page .contact-form input:focus,
+body.calm-site.inner-page .contact-form textarea:focus,
+body.calm-site.inner-page .contact-form select:focus {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+body.calm-site.inner-page .next-steps .text-link,
+body.calm-site.inner-page .text-link {
+  color: #fff8e8;
+}
+
+body[data-page="home"] .night-state__response p,
+body[data-page="home"] .night-route-card p,
+body[data-page="home"] .work-card p,
+body[data-page="home"] .section-lead,
+body[data-page="home"] .night-hero__poem p {
+  color: var(--text-soft);
+}
