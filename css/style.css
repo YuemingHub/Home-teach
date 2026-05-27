@@ -920,6 +920,23 @@ body.calm-site.inner-page .page-hero .section-shell.narrow {
   max-width: 920px;
 }
 
+body.calm-site.inner-page .hero-split {
+  display: grid;
+  grid-template-columns: minmax(0, 1.22fr) minmax(260px, 0.78fr);
+  gap: 32px;
+  align-items: end;
+}
+
+body.calm-site.inner-page .hero-split__main,
+body.calm-site.inner-page .hero-split__aside {
+  min-width: 0;
+}
+
+body.calm-site.inner-page .hero-split__aside {
+  max-width: 26rem;
+  margin-left: auto;
+}
+
 body.calm-site.inner-page .page-hero .eyebrow {
   margin-bottom: 18px;
   letter-spacing: 0.12em;
@@ -927,20 +944,32 @@ body.calm-site.inner-page .page-hero .eyebrow {
 }
 
 body.calm-site.inner-page .page-hero h1 {
-  max-width: 10.5ch;
+  max-width: 8.8ch;
   margin: 0;
-  font-size: clamp(32px, 4.4vw, 54px);
-  line-height: 1.22;
+  font-size: clamp(31px, 4vw, 50px);
+  line-height: 1.2;
   letter-spacing: -0.02em;
   text-wrap: balance;
 }
 
+body.calm-site.inner-page .hero-note {
+  margin: 0;
+  color: rgba(246, 230, 175, 0.78);
+  font-size: 14px;
+  line-height: 1.85;
+  letter-spacing: 0.02em;
+}
+
 body.calm-site.inner-page .page-lead {
-  max-width: 32rem;
-  margin-top: 18px;
+  max-width: 26rem;
+  margin-top: 14px;
   font-size: clamp(16px, 1.8vw, 18px);
   line-height: 1.9;
   text-wrap: pretty;
+}
+
+body.calm-site.inner-page .hero-split--soft .hero-split__aside .soft-button {
+  margin-top: 18px;
 }
 
 body.calm-site.inner-page .contact-shell {
@@ -2003,8 +2032,19 @@ body[data-page="home"] .night-hero__poem p {
     border-radius: 24px;
   }
 
+  body.calm-site.inner-page .hero-split {
+    grid-template-columns: 1fr;
+    gap: 16px;
+    align-items: start;
+  }
+
+  body.calm-site.inner-page .hero-split__aside {
+    max-width: 100%;
+    margin-left: 0;
+  }
+
   body.calm-site.inner-page .page-hero h1 {
-    max-width: 9.2ch;
+    max-width: 8.6ch;
     font-size: clamp(1.95rem, 8.4vw, 2.55rem);
     line-height: 1.26;
     letter-spacing: -0.02em;
@@ -2027,9 +2067,14 @@ body[data-page="home"] .night-hero__poem p {
 
   body.calm-site.inner-page .page-lead {
     max-width: 100%;
-    margin-top: 16px;
+    margin-top: 12px;
     font-size: 15.5px;
     line-height: 1.9;
+  }
+
+  body.calm-site.inner-page .hero-note {
+    font-size: 13.5px;
+    line-height: 1.8;
   }
 
   body.calm-site.inner-page .layer-card,
