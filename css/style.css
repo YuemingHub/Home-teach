@@ -1687,19 +1687,23 @@ body[data-page="home"] .text-link::after {
 .work-card {
   scroll-snap-align: start;
   position: relative;
+  display: block;
   border: 1px solid var(--paper-line);
   border-radius: 28px;
   background: rgba(255, 248, 224, 0.04);
   box-shadow: 0 18px 42px rgba(0, 0, 0, 0.18);
   overflow: hidden;
+  color: inherit;
   transition: transform 180ms ease, border-color 180ms ease, background 180ms ease;
 }
 
 .work-card:hover,
-.work-card:focus-within {
+.work-card:focus-within,
+.work-card:focus-visible {
   transform: translateY(-2px);
   background: rgba(255, 248, 224, 0.055);
   border-color: rgba(255, 248, 224, 0.18);
+  outline: none;
 }
 
 .work-card__cover {
@@ -1738,6 +1742,10 @@ body[data-page="home"] .text-link::after {
 .work-card__body {
   position: relative;
   padding: 22px;
+}
+
+.work-card__body .text-link {
+  display: inline-flex;
 }
 
 .work-carousel__dots {

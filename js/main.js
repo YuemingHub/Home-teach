@@ -281,24 +281,6 @@
       event.stopPropagation();
     }, true);
 
-    slides.forEach((slide) => {
-      const href = slide.dataset.href;
-      if (!href) return;
-
-      slide.addEventListener("click", (event) => {
-        if (suppressClick) return;
-        if (event.target.closest("a, button")) return;
-        window.location.href = href;
-      });
-
-      slide.addEventListener("keydown", (event) => {
-        if (event.key !== "Enter" && event.key !== " ") return;
-        if (suppressClick) return;
-        event.preventDefault();
-        window.location.href = href;
-      });
-    });
-
     updateDots(0);
   }
 
