@@ -917,14 +917,34 @@ body.calm-site.inner-page .quiet-content {
 }
 
 body.calm-site.inner-page .page-hero .section-shell.narrow {
-  max-width: 920px;
+  position: relative;
+  max-width: 980px;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+body.calm-site.inner-page .page-hero .section-shell.narrow::before {
+  content: "";
+  position: absolute;
+  top: clamp(22px, 4vw, 38px);
+  right: clamp(18px, 5vw, 54px);
+  width: clamp(160px, 24vw, 260px);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle, rgba(246, 230, 175, 0.11) 0%, rgba(246, 230, 175, 0.055) 34%, rgba(246, 230, 175, 0) 72%);
+  filter: blur(8px);
+  pointer-events: none;
+  z-index: 0;
 }
 
 body.calm-site.inner-page .hero-split {
   display: grid;
-  grid-template-columns: minmax(0, 1.22fr) minmax(260px, 0.78fr);
-  gap: 32px;
-  align-items: end;
+  grid-template-columns: minmax(0, 1.38fr) minmax(300px, 0.92fr);
+  gap: clamp(22px, 4vw, 54px);
+  align-items: center;
+  position: relative;
+  z-index: 1;
 }
 
 body.calm-site.inner-page .hero-split__main,
@@ -932,44 +952,69 @@ body.calm-site.inner-page .hero-split__aside {
   min-width: 0;
 }
 
+body.calm-site.inner-page .hero-split__main {
+  display: grid;
+  align-content: start;
+}
+
 body.calm-site.inner-page .hero-split__aside {
-  max-width: 26rem;
+  width: 100%;
+  max-width: 24rem;
   margin-left: auto;
+  padding: 20px 22px 20px 24px;
+  border: 1px solid rgba(246, 230, 175, 0.14);
+  border-radius: 26px;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.055), rgba(255, 255, 255, 0.028));
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.035);
+  backdrop-filter: blur(12px);
+  align-self: center;
+  position: relative;
+}
+
+body.calm-site.inner-page .hero-split__aside::before {
+  content: "";
+  position: absolute;
+  top: 20px;
+  bottom: 20px;
+  left: 0;
+  width: 1px;
+  background: linear-gradient(180deg, rgba(246, 230, 175, 0.04), rgba(246, 230, 175, 0.26), rgba(246, 230, 175, 0.05));
 }
 
 body.calm-site.inner-page .page-hero .eyebrow {
-  margin-bottom: 18px;
+  margin-bottom: 16px;
   letter-spacing: 0.12em;
   text-transform: none;
 }
 
 body.calm-site.inner-page .page-hero h1 {
-  max-width: 8.8ch;
+  max-width: 11.2ch;
   margin: 0;
-  font-size: clamp(31px, 4vw, 50px);
-  line-height: 1.2;
-  letter-spacing: -0.02em;
+  font-size: clamp(38px, 5vw, 62px);
+  line-height: 1.12;
+  letter-spacing: -0.04em;
   text-wrap: balance;
 }
 
 body.calm-site.inner-page .hero-note {
   margin: 0;
   color: rgba(246, 230, 175, 0.78);
-  font-size: 14px;
-  line-height: 1.85;
+  font-size: 13.5px;
+  line-height: 1.82;
   letter-spacing: 0.02em;
 }
 
 body.calm-site.inner-page .page-lead {
-  max-width: 26rem;
-  margin-top: 14px;
-  font-size: clamp(16px, 1.8vw, 18px);
-  line-height: 1.9;
+  max-width: 22rem;
+  margin-top: 16px;
+  font-size: clamp(16.5px, 1.85vw, 18px);
+  line-height: 1.82;
   text-wrap: pretty;
 }
 
 body.calm-site.inner-page .hero-split--soft .hero-split__aside .soft-button {
-  margin-top: 18px;
+  margin-top: 20px;
 }
 
 body.calm-site.inner-page .contact-shell {
@@ -2032,22 +2077,31 @@ body[data-page="home"] .night-hero__poem p {
     border-radius: 24px;
   }
 
+  body.calm-site.inner-page .page-hero .section-shell.narrow::before {
+    top: 18px;
+    right: 8px;
+    width: 140px;
+    opacity: 0.7;
+  }
+
   body.calm-site.inner-page .hero-split {
     grid-template-columns: 1fr;
-    gap: 16px;
+    gap: 18px;
     align-items: start;
   }
 
   body.calm-site.inner-page .hero-split__aside {
     max-width: 100%;
     margin-left: 0;
+    padding: 16px 16px 16px 18px;
+    border-radius: 22px;
   }
 
   body.calm-site.inner-page .page-hero h1 {
-    max-width: 8.6ch;
-    font-size: clamp(1.95rem, 8.4vw, 2.55rem);
-    line-height: 1.26;
-    letter-spacing: -0.02em;
+    max-width: 10.4ch;
+    font-size: clamp(2.1rem, 9.4vw, 3rem);
+    line-height: 1.15;
+    letter-spacing: -0.035em;
   }
 
   body.calm-site.inner-page .page-hero .eyebrow {
@@ -2067,14 +2121,14 @@ body[data-page="home"] .night-hero__poem p {
 
   body.calm-site.inner-page .page-lead {
     max-width: 100%;
-    margin-top: 12px;
+    margin-top: 13px;
     font-size: 15.5px;
-    line-height: 1.9;
+    line-height: 1.84;
   }
 
   body.calm-site.inner-page .hero-note {
-    font-size: 13.5px;
-    line-height: 1.8;
+    font-size: 13px;
+    line-height: 1.74;
   }
 
   body.calm-site.inner-page .layer-card,
