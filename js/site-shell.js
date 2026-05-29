@@ -22,7 +22,7 @@
             <span class="brand-mark" aria-hidden="true"></span>
             <span class="brand-text">
               <strong>YuemingHub</strong>
-              <span>个人宇宙 · 一出真戏</span>
+              <span>产出索引 · 作品地图</span>
             </span>
           </a>
 
