@@ -7,6 +7,7 @@
 
   function initRevealItems() {
     const revealTargets = [
+      ".cosmos-home .reveal-item",
       ".night-state .section-shell",
       ".night-routes .section-shell",
       ".night-route-card",
